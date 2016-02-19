@@ -69,11 +69,17 @@ public class CalendarUtils {
      * @return
      */
     public static String getDate(int year, int month) {
-        SimpleDateFormat df = new SimpleDateFormat(PATTERN);
-        Calendar cal = Calendar.getInstance();
-        cal.set(Calendar.YEAR, year);
-        cal.set(Calendar.MONTH, month - 1);
-        return df.format(cal.getTime());
+        String datetime = "" + year + (month > 9 ? month : ("0" + month));
+        String parrern = "yyyyMM";
+        SimpleDateFormat df = new SimpleDateFormat(parrern);
+        try {
+            Date date = df.parse(datetime);
+            SimpleDateFormat df2 = new SimpleDateFormat(PATTERN);
+            return df2.format(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 
     /**

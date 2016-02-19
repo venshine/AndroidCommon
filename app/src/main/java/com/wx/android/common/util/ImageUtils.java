@@ -2,6 +2,7 @@ package com.wx.android.common.util;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.view.View;
 
 import java.io.File;
@@ -14,6 +15,35 @@ import java.io.FileOutputStream;
  */
 public class ImageUtils {
 
+    public static final int UNSPECIFIED = 0;
+
+    /**
+     * Convert view to bitmap
+     *
+     * @param view
+     * @param width
+     * @param height
+     * @return
+     */
+    public static Bitmap convertViewToBitmap(View view, int width, int height) {
+        view.measure(View.MeasureSpec.makeMeasureSpec(width, (width == UNSPECIFIED) ? View.MeasureSpec.UNSPECIFIED : View.MeasureSpec.EXACTLY),
+                View.MeasureSpec.makeMeasureSpec(height, (height == UNSPECIFIED) ? View.MeasureSpec.UNSPECIFIED : View.MeasureSpec.EXACTLY));
+        view.layout(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
+        Bitmap bitmap = Bitmap.createBitmap(view.getMeasuredWidth(), view.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
+        view.draw(new Canvas(bitmap));
+        return bitmap;
+    }
+
+    /**
+     * Convert view to bitmap
+     *
+     * @param view
+     * @return
+     */
+    public static Bitmap convertViewToBitmap(View view) {
+        return convertViewToBitmap(view, UNSPECIFIED, UNSPECIFIED);
+    }
+
     /**
      * take a screenshot
      *
@@ -22,10 +52,10 @@ public class ImageUtils {
      * @return
      */
     public static boolean screenshot(Activity activity, String filePath) {
-        View rootView = activity.getWindow().getDecorView();
-        rootView.setDrawingCacheEnabled(true);
-        rootView.buildDrawingCache();
-        Bitmap bitmap = rootView.getDrawingCache();
+        View decorView = activity.getWindow().getDecorView();
+        decorView.setDrawingCacheEnabled(true);
+        decorView.buildDrawingCache();
+        Bitmap bitmap = decorView.getDrawingCache();
         File imagePath = new File(filePath);
         FileOutputStream fos = null;
         try {
@@ -44,8 +74,8 @@ public class ImageUtils {
                 }
             } catch (Exception e) {
             }
-            rootView.destroyDrawingCache();
-            rootView.setDrawingCacheEnabled(false);
+            decorView.destroyDrawingCache();
+            decorView.setDrawingCacheEnabled(false);
         }
         return false;
     }
