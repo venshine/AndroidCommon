@@ -4,9 +4,11 @@ import android.text.format.Time;
 
 /**
  * Time Information
- *
+ * <p/>
+ * @deprecated Use {@link CalendarUtils} instead.
  * @author fengwx
  */
+@Deprecated
 public class TimeUtils {
 
     public static final String WEEK_NAME_ABBR = "%a";   // Abbreviated weekday name. Thu
