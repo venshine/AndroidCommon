@@ -1,6 +1,6 @@
 AndroidCommon
 ==
-AndroidCommon is a simple open source android library, it provides many useful methods to help us develop
+AndroidCommon is a simple open source android library, it provides many useful classes to help us develop.
 
 Setup
 --
