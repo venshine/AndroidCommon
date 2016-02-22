@@ -5,6 +5,9 @@ package com.wx.android.common.util;
 
 import android.util.Log;
 
+import com.wx.android.common.CommonCfg;
+import com.wx.android.common.log.Level;
+
 /**
  * Log
  *
@@ -20,7 +23,9 @@ public class LogUtils {
      * @param msg
      */
     public static void d(String msg) {
-        Log.d(TAG, msg);
+        if (CommonCfg.LOG <= Level.DEBUG) {
+            Log.d(TAG, msg);
+        }
     }
 
     /**
@@ -29,7 +34,9 @@ public class LogUtils {
      * @param msg
      */
     public static void e(String msg) {
-        Log.e(TAG, msg);
+        if (CommonCfg.LOG <= Level.ERROR) {
+            Log.e(TAG, msg);
+        }
     }
 
 }
