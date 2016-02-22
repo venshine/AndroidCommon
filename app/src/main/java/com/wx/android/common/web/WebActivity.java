@@ -29,7 +29,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.wx.android.common.log.Logger;
-import com.wx.android.common.util.DisplayUtil;
+import com.wx.android.common.util.DisplayUtils;
 import com.wx.android.common.util.StringUtils;
 
 /**
@@ -108,15 +108,15 @@ public class WebActivity extends Activity {
         mTitle.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 18);
         mTitle.setSingleLine();
         mTitle.setEllipsize(TextUtils.TruncateAt.END);
-        mTitle.setPadding(DisplayUtil.dip2px(this, 20), 0, DisplayUtil.dip2px(this, 20), 0);
+        mTitle.setPadding(DisplayUtils.dip2px(this, 20), 0, DisplayUtils.dip2px(this, 20), 0);
         LinearLayout.LayoutParams titleParams = new LinearLayout.LayoutParams(LinearLayout
-                .LayoutParams.MATCH_PARENT, DisplayUtil.dip2px(this, 45));
+                .LayoutParams.MATCH_PARENT, DisplayUtils.dip2px(this, 45));
         layout.addView(mTitle, titleParams);
 
         // progressbar
         mProgress = new ProgressBar(this, null, android.R.attr.progressBarStyleHorizontal);
         LinearLayout.LayoutParams progressParams = new LinearLayout.LayoutParams(LinearLayout
-                .LayoutParams.MATCH_PARENT, DisplayUtil.dip2px(this, 3));
+                .LayoutParams.MATCH_PARENT, DisplayUtils.dip2px(this, 3));
         layout.addView(mProgress, progressParams);
 
         // webview
@@ -161,7 +161,7 @@ public class WebActivity extends Activity {
      * Load url
      */
     private void loadUrl() {
-        if (!StringUtils.equalsNull(mUrl)) {
+        if (!StringUtils.isEmpty(mUrl)) {
             mWebView.loadUrl(mUrl);
             if (mShowTitle) {
                 mTitle.setText(mUrl);

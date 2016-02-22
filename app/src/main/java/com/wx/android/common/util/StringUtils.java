@@ -18,7 +18,7 @@ public class StringUtils {
      * @param str
      * @return
      */
-    public static boolean equalsNull(String str) {
+    public static boolean isEmpty(String str) {
         int strLen;
         if (str == null || (strLen = str.length()) == 0 || str.equalsIgnoreCase("null")) {
             return true;

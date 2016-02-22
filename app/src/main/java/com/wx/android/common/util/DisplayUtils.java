@@ -7,7 +7,7 @@ import android.content.Context;
  *
  * @author fengwx
  */
-public class DisplayUtil {
+public class DisplayUtils {
 
     /**
      * Convert dp to px by the density of phone

@@ -1,11 +1,11 @@
 package com.wx.android.common.util;
 
-import java.util.List;
-import java.util.Map;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * SharedPreferences
@@ -48,7 +48,7 @@ public class SharedPreferencesUtils {
             throw new IllegalStateException("Please invoke init method first.");
         }
         SharedPreferences sharedPreferences;
-        if (StringUtils.equalsNull(name)) {
+        if (StringUtils.isEmpty(name)) {
             sharedPreferences = getSharedPreferences();
         } else {
             sharedPreferences = mContext.getSharedPreferences(name, Context.MODE_PRIVATE);
@@ -76,7 +76,7 @@ public class SharedPreferencesUtils {
      * @return
      */
     public static boolean put(String name, String key, Object value) {
-        if (StringUtils.equalsNull(key) || null == value) {
+        if (StringUtils.isEmpty(key) || null == value) {
             throw new RuntimeException("key or value cannot be null.");
         }
         SharedPreferences.Editor editor = getSharedPreferences(name).edit();
@@ -114,7 +114,7 @@ public class SharedPreferencesUtils {
      * @return
      */
     public static boolean putAll(String name, String key, List<?> list) {
-        if (StringUtils.equalsNull(key) || ListUtils.equalsNull(list)) {
+        if (StringUtils.isEmpty(key) || CollectionUtils.isEmpty(list)) {
             throw new RuntimeException("key or list cannot be null.");
         }
         SharedPreferences.Editor editor = getSharedPreferences(name).edit();

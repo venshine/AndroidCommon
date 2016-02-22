@@ -132,7 +132,7 @@ public class IntentUtils {
      * @param action  The action contains global system-level device preferences.
      */
     public static void openSettings(Context context, String action) {
-        if (!StringUtils.equalsNull(action)) {
+        if (!StringUtils.isEmpty(action)) {
             Intent intent = new Intent(action);
             context.startActivity(intent);
         } else {

@@ -218,7 +218,7 @@ public class NetworkUtils {
             Properties pr = new Properties();
             pr.load(process.getInputStream());
             re = pr.getProperty(interfaceName, "");
-            if (!StringUtils.equalsNull(re) && re.length() > 6) {
+            if (!StringUtils.isEmpty(re) && re.length() > 6) {
                 re = re.substring(1, re.length() - 1);
                 return re;
             }

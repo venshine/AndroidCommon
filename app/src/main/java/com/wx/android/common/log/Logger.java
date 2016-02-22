@@ -33,7 +33,7 @@ public final class Logger {
      * @param tag
      */
     public static void initTag(String tag) {
-        if (!StringUtils.equalsNull(tag)) {
+        if (!StringUtils.isEmpty(tag)) {
             String fileName = Thread.currentThread().getStackTrace()[3]
                     .getFileName();  // className可能出现org.fengwx.core.Main$4这种命名，因此使用fileName
             if (tagMap.size() > 0 && tagMap.containsKey(fileName)) {
@@ -76,7 +76,7 @@ public final class Logger {
      * @param args
      */
     public static void wtf(String tag, CharSequence msg, Object... args) {
-        if (!StringUtils.equalsNull(tag) && tag.contains(mFlag)) {  // tag如果包含{}，tag为msg
+        if (!StringUtils.isEmpty(tag) && tag.contains(mFlag)) {  // tag如果包含{}，tag为msg
             if (args != null && args.length > 0) {  // 如果args不为空，将msg和args合并作为参数传入
                 ArrayList<Object> list = new ArrayList<Object>(Arrays.asList(args));
                 list.add(0, msg);
@@ -121,7 +121,7 @@ public final class Logger {
      * @param args
      */
     public static void e(String tag, CharSequence msg, Object... args) {
-        if (!StringUtils.equalsNull(tag) && tag.contains(mFlag)) {  // tag如果包含{}，tag为msg
+        if (!StringUtils.isEmpty(tag) && tag.contains(mFlag)) {  // tag如果包含{}，tag为msg
             if (args != null && args.length > 0) {  // 如果args不为空，将msg和args合并作为参数传入
                 ArrayList<Object> list = new ArrayList<Object>(Arrays.asList(args));
                 list.add(0, msg);
@@ -165,7 +165,7 @@ public final class Logger {
      * @param args
      */
     public static void w(String tag, CharSequence msg, Object... args) {
-        if (!StringUtils.equalsNull(tag) && tag.contains(mFlag)) {  // tag如果包含{}，tag为msg
+        if (!StringUtils.isEmpty(tag) && tag.contains(mFlag)) {  // tag如果包含{}，tag为msg
             if (args != null && args.length > 0) {  // 如果args不为空，将msg和args合并作为参数传入
                 ArrayList<Object> list = new ArrayList<Object>(Arrays.asList(args));
                 list.add(0, msg);
@@ -209,7 +209,7 @@ public final class Logger {
      * @param args
      */
     public static void i(String tag, CharSequence msg, Object... args) {
-        if (!StringUtils.equalsNull(tag) && tag.contains(mFlag)) {  // tag如果包含{}，tag为msg
+        if (!StringUtils.isEmpty(tag) && tag.contains(mFlag)) {  // tag如果包含{}，tag为msg
             if (args != null && args.length > 0) {  // 如果args不为空，将msg和args合并作为参数传入
                 ArrayList<Object> list = new ArrayList<Object>(Arrays.asList(args));
                 list.add(0, msg);
@@ -253,7 +253,7 @@ public final class Logger {
      * @param args
      */
     public static void d(String tag, CharSequence msg, Object... args) {
-        if (!StringUtils.equalsNull(tag) && tag.contains(mFlag)) {  // tag如果包含{}，tag为msg
+        if (!StringUtils.isEmpty(tag) && tag.contains(mFlag)) {  // tag如果包含{}，tag为msg
             if (args != null && args.length > 0) {  // 如果args不为空，将msg和args合并作为参数传入
                 ArrayList<Object> list = new ArrayList<Object>(Arrays.asList(args));
                 list.add(0, msg);
@@ -297,7 +297,7 @@ public final class Logger {
      * @param args
      */
     public static void v(String tag, CharSequence msg, Object... args) {
-        if (!StringUtils.equalsNull(tag) && tag.contains(mFlag)) {  // tag如果包含{}，tag为msg
+        if (!StringUtils.isEmpty(tag) && tag.contains(mFlag)) {  // tag如果包含{}，tag为msg
             if (args != null && args.length > 0) {  // 如果args不为空，将msg和args合并作为参数传入
                 ArrayList<Object> list = new ArrayList<Object>(Arrays.asList(args));
                 list.add(0, msg);
@@ -331,7 +331,7 @@ public final class Logger {
      * @return
      */
     private static String format(String msg, Object... args) {
-        if (!StringUtils.equalsNull(msg) && null != args && msg.contains(mFlag)) {
+        if (!StringUtils.isEmpty(msg) && null != args && msg.contains(mFlag)) {
             StringBuilder result = new StringBuilder(msg);
             int len = args.length;
             if (len == 0) {
@@ -374,7 +374,7 @@ public final class Logger {
      * @return
      */
     private static String markTag(String tag) {
-        if (!StringUtils.equalsNull(tag)) { // log中有tag，以tag为准
+        if (!StringUtils.isEmpty(tag)) { // log中有tag，以tag为准
             return tag;
         }
         String fileName = Thread.currentThread().getStackTrace()[6].getFileName();
