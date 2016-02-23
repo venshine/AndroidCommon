@@ -1,5 +1,7 @@
 package com.wx.android.common.util;
 
+import android.text.TextUtils;
+
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
@@ -29,6 +31,17 @@ public class StringUtils {
             }
         }
         return true;
+    }
+
+    /**
+     * Returns true if a and b are equal, including if they are both null.
+     *
+     * @param a
+     * @param b
+     * @return
+     */
+    public static boolean equals(CharSequence a, CharSequence b) {
+        return TextUtils.equals(a, b);
     }
 
     /**

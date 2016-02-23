@@ -1,12 +1,11 @@
 package com.wx.android.common.util;
 
 import android.app.Activity;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.view.View;
+import android.content.Intent;
+import android.net.Uri;
+import android.provider.MediaStore;
 
 import java.io.File;
-import java.io.FileOutputStream;
 
 /**
  * Image
@@ -15,69 +14,44 @@ import java.io.FileOutputStream;
  */
 public class ImageUtils {
 
-    public static final int UNSPECIFIED = 0;
+    public static final int CAMERA_REQ_CODE = 0x0001;
+
+    public static final int PICTURE_REQ_CODE = 0x0002;
 
     /**
-     * Convert view to bitmap
-     *
-     * @param view
-     * @param width
-     * @param height
-     * @return
-     */
-    public static Bitmap convertViewToBitmap(View view, int width, int height) {
-        view.measure(View.MeasureSpec.makeMeasureSpec(width, (width == UNSPECIFIED) ? View.MeasureSpec.UNSPECIFIED : View.MeasureSpec.EXACTLY),
-                View.MeasureSpec.makeMeasureSpec(height, (height == UNSPECIFIED) ? View.MeasureSpec.UNSPECIFIED : View.MeasureSpec.EXACTLY));
-        view.layout(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
-        Bitmap bitmap = Bitmap.createBitmap(view.getMeasuredWidth(), view.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
-        view.draw(new Canvas(bitmap));
-        return bitmap;
-    }
-
-    /**
-     * Convert view to bitmap
-     *
-     * @param view
-     * @return
-     */
-    public static Bitmap convertViewToBitmap(View view) {
-        return convertViewToBitmap(view, UNSPECIFIED, UNSPECIFIED);
-    }
-
-    /**
-     * take a screenshot
+     * Open camera
      *
      * @param activity
-     * @param filePath
-     * @return
+     * @param path
      */
-    public static boolean screenshot(Activity activity, String filePath) {
-        View decorView = activity.getWindow().getDecorView();
-        decorView.setDrawingCacheEnabled(true);
-        decorView.buildDrawingCache();
-        Bitmap bitmap = decorView.getDrawingCache();
-        File imagePath = new File(filePath);
-        FileOutputStream fos = null;
-        try {
-            fos = new FileOutputStream(imagePath);
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
-            fos.flush();
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                fos.close();
-                if (null != bitmap) {
-                    bitmap.recycle();
-                    bitmap = null;
-                }
-            } catch (Exception e) {
-            }
-            decorView.destroyDrawingCache();
-            decorView.setDrawingCacheEnabled(false);
-        }
-        return false;
+    public void openCamera(Activity activity, String path) {
+        openCamera(activity, path, "IMG_" + System.currentTimeMillis() + ".jpg");
+    }
+
+    /**
+     * Open camera
+     *
+     * @param activity
+     * @param path
+     * @param fileName
+     */
+    public void openCamera(Activity activity, String path, String fileName) {
+        FileUtils.makeDirs(path);
+        File cameraFile = new File(path, fileName);
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(cameraFile));
+        activity.startActivityForResult(intent, CAMERA_REQ_CODE);
+    }
+
+    /**
+     * Open picture
+     *
+     * @param activity
+     */
+    public void openPicture(Activity activity) {
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setDataAndType(android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+        activity.startActivityForResult(intent, PICTURE_REQ_CODE);
     }
 
 }

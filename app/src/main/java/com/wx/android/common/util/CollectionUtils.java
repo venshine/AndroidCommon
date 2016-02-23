@@ -62,27 +62,14 @@ public class CollectionUtils {
     }
 
     /**
-     * Convert list to array
+     * Convert collection to array
      *
-     * @param list
+     * @param c
      * @return
      */
-    public static Object[] listToArray(List<?> list) {
-        if (!isEmpty(list)) {
-            return list.toArray();
-        }
-        return null;
-    }
-
-    /**
-     * Convert set to array
-     *
-     * @param set
-     * @return
-     */
-    public static Object[] setToArray(Set<?> set) {
-        if (!isEmpty(set)) {
-            return set.toArray();
+    public static Object[] listToArray(Collection<?> c) {
+        if (!isEmpty(c)) {
+            return c.toArray();
         }
         return null;
     }
@@ -107,6 +94,33 @@ public class CollectionUtils {
      */
     public static <T> List<T> setToList(Set<T> set) {
         return new ArrayList<T>(set);
+    }
+
+    /**
+     * Traverse collection
+     *
+     * @param c
+     * @param <T>
+     * @return
+     */
+    public static <T> String traverseCollection(Collection<T> c) {
+        if (!isEmpty(c)) {
+            int len = c.size();
+            StringBuilder builder = new StringBuilder(len);
+            int i = 0;
+            for (T t : c) {
+                if (t == null) {
+                    continue;
+                }
+                builder.append(t.toString());
+                i++;
+                if (i < len) {
+                    builder.append(DELIMITER);
+                }
+            }
+            return builder.toString();
+        }
+        return null;
     }
 
 }
