@@ -51,7 +51,7 @@ public class TelephonyUtils {
 	 * @param context
 	 * @return
 	 */
-	public static String getDeviceId(Context context) {
+	public static String getIMEI(Context context) {
 		TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
 		return tm.getDeviceId();
 	}
@@ -175,7 +175,7 @@ public class TelephonyUtils {
 	 * @param context
 	 * @return
 	 */
-	public static String getSubscriberId(Context context) {
+	public static String getIMSI(Context context) {
 		TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
 		return tm.getSubscriberId();
 	}

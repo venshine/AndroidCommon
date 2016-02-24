@@ -137,7 +137,7 @@ public class MemoryUtils {
      * @param context
      * @return
      */
-    public static String getAvailMemory(Context context) {
+    public static String getAvailableMemory(Context context) {
         ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
         ActivityManager.MemoryInfo mi = new ActivityManager.MemoryInfo();
         am.getMemoryInfo(mi);

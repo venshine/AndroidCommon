@@ -1,12 +1,16 @@
 package com.wx.android.common.util;
 
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.net.Uri;
 
 import java.io.File;
+import java.util.List;
 
 /**
  * Package
@@ -99,6 +103,76 @@ public class PackageUtils {
             e.printStackTrace();
         }
         return false;
+    }
+
+    /**
+     * Get installed package infos
+     *
+     * @param context
+     * @return
+     */
+    public static List<PackageInfo> getInsatalledPackageInfos(Context context) {
+        return context.getPackageManager().getInstalledPackages(0);
+    }
+
+    /**
+     * Judge whether the packageName is installed
+     *
+     * @param context
+     * @param packageName
+     * @return
+     */
+    public static boolean isInsatalled(Context context, String packageName) {
+        if (!StringUtils.isEmpty(packageName)) {
+            List<PackageInfo> list = getInsatalledPackageInfos(context);
+            if (!CollectionUtils.isEmpty(list)) {
+                for (PackageInfo pi : list) {
+                    if (packageName.equalsIgnoreCase(pi.packageName)) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Start app by packageName
+     *
+     * @param context
+     * @param packageName
+     */
+    public static void startApp(Context context, String packageName) {
+        PackageInfo packageinfo = null;
+        try {
+            packageinfo = context.getPackageManager().getPackageInfo(packageName, 0);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        if (packageinfo == null) {
+            return;
+        }
+
+        Intent resolveIntent = new Intent(Intent.ACTION_MAIN, null);
+        resolveIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+        resolveIntent.setPackage(packageinfo.packageName);
+
+        List<ResolveInfo> resolveinfoList = context.getPackageManager()
+                .queryIntentActivities(resolveIntent, 0);
+
+        ResolveInfo resolveinfo = resolveinfoList.iterator().next();
+        if (resolveinfo != null) {
+            String pkgName = resolveinfo.activityInfo.packageName;
+            String className = resolveinfo.activityInfo.name;
+
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.addCategory(Intent.CATEGORY_LAUNCHER);
+
+            ComponentName cn = new ComponentName(pkgName, className);
+            intent.setComponent(cn);
+            context.startActivity(intent);
+        }
     }
 
 }
