@@ -14,6 +14,11 @@ import android.widget.ImageView;
 
 import com.wx.android.common.util.DeviceUtils;
 
+/**
+ * PictureView
+ *
+ * @author fengwx
+ */
 public class PictureView extends ImageView {
 
     private static final int NONE = 0;// 初始状态
