@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.view.View;
 
 import java.io.ByteArrayOutputStream;
@@ -23,6 +24,20 @@ import java.io.InputStream;
 public class BitmapUtils {
 
     public static final int UNSPECIFIED = 0;
+
+    /**
+     * Convert resId to drawable
+     *
+     * @param context
+     * @param resId
+     * @return
+     */
+    public static Drawable resToDrawable(Context context, int resId) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            return context.getDrawable(resId);
+        }
+        return context.getResources().getDrawable(resId);
+    }
 
     /**
      * Convert Bitmap to byte array
