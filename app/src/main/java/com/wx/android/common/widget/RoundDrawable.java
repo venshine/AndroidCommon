@@ -18,8 +18,8 @@ import android.graphics.drawable.Drawable;
  */
 public class RoundDrawable extends Drawable {
 
-    private static final int BORDER_COLOR = 0xFF000000;
-    private static final int BORDER_WIDTH = 5;
+    private static final int BORDER_COLOR = 0;
+    private static final int BORDER_WIDTH = 0;
 
     private final Paint mPaint;
     private final Paint mBorderPaint;
@@ -27,23 +27,39 @@ public class RoundDrawable extends Drawable {
     private final RectF mRectF;
     private final RectF mBorderRectF;
 
-    private final int mBitmapWidth;
-    private final int mBitmapHeight;
+    private int mBitmapWidth;
+    private int mBitmapHeight;
 
     private final int mBorderWidth;
+    private final boolean mIsCircle;
 
     public RoundDrawable(Bitmap bitmap) {
-        this(bitmap, BORDER_COLOR, BORDER_WIDTH);
+        this(bitmap, BORDER_COLOR, BORDER_WIDTH, false);
     }
 
-    public RoundDrawable(Bitmap bitmap, int borderColor, int borderWidth) {
+    public RoundDrawable(Bitmap bitmap, int borderColor, int borderWidth, boolean isCircle) {
         if (bitmap == null) {
             throw new IllegalArgumentException("bitmap cannot be null.");
         }
+        // bitmap
+        mBitmapWidth = bitmap.getWidth();
+        mBitmapHeight = bitmap.getHeight();
+        mIsCircle = isCircle;
+        mBorderWidth = borderWidth;
+        mRectF = new RectF();
+        mBorderRectF = new RectF();
+        Bitmap bm = null;
+        if (mIsCircle) {
+            bm = getSquareBitmap(bitmap);
+        }
+
         // paint
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
         mPaint.setDither(true);
+        mPaint.setFilterBitmap(true);
+        BitmapShader shader = new BitmapShader(bm == null ? bitmap : bm, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
+        mPaint.setShader(shader);
 
         // border paint
         mBorderPaint = new Paint();
@@ -52,33 +68,48 @@ public class RoundDrawable extends Drawable {
         mBorderPaint.setStyle(Paint.Style.STROKE);
         mBorderPaint.setColor(borderColor);
         mBorderPaint.setStrokeWidth(borderWidth);
-        mBorderWidth = borderWidth;
+    }
 
-        mRectF = new RectF();
-        mBorderRectF = new RectF();
-
-        BitmapShader shader = new BitmapShader(bitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
-        mPaint.setShader(shader);
-
-        mBitmapWidth = bitmap.getWidth();
-        mBitmapHeight = bitmap.getHeight();
+    /**
+     * Get bitmap of square
+     *
+     * @param bitmap
+     * @return
+     */
+    private Bitmap getSquareBitmap(Bitmap bitmap) {
+        Bitmap bm;
+        if (mBitmapWidth > mBitmapHeight) {
+            bm = Bitmap.createBitmap(bitmap, (mBitmapWidth - mBitmapHeight) / 2, 0, mBitmapHeight,
+                    mBitmapHeight);
+            mBitmapWidth = mBitmapHeight;
+        } else if (mBitmapWidth < mBitmapHeight) {
+            bm = Bitmap.createBitmap(bitmap, 0, (mBitmapHeight - mBitmapWidth) / 2, mBitmapWidth, mBitmapWidth);
+            mBitmapHeight = mBitmapWidth;
+        } else {
+            bm = bitmap;
+        }
+        return bm;
     }
 
     @Override
     public void draw(Canvas canvas) {
-        canvas.drawOval(mRectF, mPaint);
-        canvas.drawOval(mBorderRectF, mBorderPaint);
+        if (mIsCircle) {
+            canvas.drawCircle(mRectF.centerX(), mRectF.centerY(), mRectF.centerX(), mPaint);
+            canvas.drawCircle(mBorderRectF.centerX(), mBorderRectF.centerY(), mBorderRectF.centerX() - mBorderWidth /
+                            2.0f,
+                    mBorderPaint);
+        } else {
+            canvas.drawOval(mRectF, mPaint);
+            canvas.drawOval(mBorderRectF, mBorderPaint);
+        }
     }
 
     @Override
     protected void onBoundsChange(Rect bounds) {
         super.onBoundsChange(bounds);
-        bounds.left += mBorderWidth;
-        bounds.top += mBorderWidth;
-        bounds.right -= mBorderWidth;
-        bounds.bottom -= mBorderWidth;
-        mBorderRectF.set(bounds);
         mRectF.set(bounds);
+        bounds.inset(mBorderWidth / 2, mBorderWidth / 2);   // FIXME fine tuning, [bounds.inset(mBorderWidth, mBorderWidth);]
+        mBorderRectF.set(bounds);
     }
 
     @Override
