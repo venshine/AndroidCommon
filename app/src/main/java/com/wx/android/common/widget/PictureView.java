@@ -12,7 +12,7 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.widget.ImageView;
 
-import com.wx.android.common.util.DeviceUtils;
+import com.wx.android.common.util.DisplayUtils;
 
 /**
  * PictureView
@@ -61,8 +61,8 @@ public class PictureView extends ImageView {
 
     public void initView() {
         // 屏幕宽高
-        mScreenW = DeviceUtils.getScreenWidth(getContext());
-        mScreenH = DeviceUtils.getScreenHeight(getContext());
+        mScreenW = DisplayUtils.getScreenWidth(getContext());
+        mScreenH = DisplayUtils.getScreenHeight(getContext());
 
         // 设置ScaleType为ScaleType.MATRIX，这一步很重要
         setScaleType(ScaleType.MATRIX);

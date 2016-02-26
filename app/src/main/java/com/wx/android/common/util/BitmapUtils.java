@@ -194,8 +194,8 @@ public class BitmapUtils {
         final int height = options.outHeight;
         final int width = options.outWidth;
         int inSampleSize = 1;
-        int h = DeviceUtils.getScreenHeight(context);
-        int w = DeviceUtils.getScreenWidth(context);
+        int h = DisplayUtils.getScreenHeight(context);
+        int w = DisplayUtils.getScreenWidth(context);
         if (height > h || width > w) {
             // 计算出实际宽高和目标宽高的比率
             final int heightRatio = Math.round((float) height / (float) h);

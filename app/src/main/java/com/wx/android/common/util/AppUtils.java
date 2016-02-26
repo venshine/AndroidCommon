@@ -1,11 +1,22 @@
 package com.wx.android.common.util;
 
+import android.app.ActivityManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.pm.Signature;
 import android.graphics.drawable.Drawable;
+
+import java.io.ByteArrayInputStream;
+import java.security.cert.CertificateException;
+import java.security.cert.CertificateFactory;
+import java.security.cert.X509Certificate;
+import java.util.List;
+
+import javax.security.auth.x500.X500Principal;
 
 /**
  * App Information
@@ -13,6 +24,9 @@ import android.graphics.drawable.Drawable;
  * @author fengwx
  */
 public class AppUtils {
+
+    private final static X500Principal DEBUG_DN = new X500Principal(
+            "CN=Android Debug,O=Android,C=US");
 
     /**
      * Get version name
@@ -174,6 +188,76 @@ public class AppUtils {
             e.printStackTrace();
         }
         return null;
+    }
+
+    /**
+     * Judge whether an app is dubuggable
+     *
+     * @param ctx
+     * @return
+     */
+    public static boolean isDebuggable(Context ctx) {
+        boolean debuggable = false;
+        try {
+            PackageInfo pinfo = ctx.getPackageManager().getPackageInfo(ctx.getPackageName(), PackageManager
+                    .GET_SIGNATURES);
+            Signature signatures[] = pinfo.signatures;
+            for (int i = 0; i < signatures.length; i++) {
+                CertificateFactory cf = CertificateFactory.getInstance("X.509");
+                ByteArrayInputStream stream = new ByteArrayInputStream(signatures[i].toByteArray());
+                X509Certificate cert = (X509Certificate) cf
+                        .generateCertificate(stream);
+                debuggable = cert.getSubjectX500Principal().equals(DEBUG_DN);
+                if (debuggable) {
+                    break;
+                }
+            }
+
+        } catch (NameNotFoundException e) {
+        } catch (CertificateException e) {
+        }
+        return debuggable;
+    }
+
+    /**
+     * ART
+     *
+     * @return
+     */
+    public static boolean isART() {
+        final String vmVersion = System.getProperty("java.vm.version");
+        return vmVersion != null && vmVersion.startsWith("2");
+    }
+
+    /**
+     * DALVIK
+     *
+     * @return
+     */
+    public static boolean isDalvik() {
+        final String vmVersion = System.getProperty("java.vm.version");
+        return vmVersion != null && vmVersion.startsWith("1");
+    }
+
+    /**
+     * Judge whether an app is in background
+     *
+     * @param context
+     * @return
+     */
+    public static boolean isAppInBackground(Context context) {
+        ActivityManager am = (ActivityManager) context
+                .getSystemService(Context.ACTIVITY_SERVICE);
+        List<ActivityManager.RunningTaskInfo> taskList = am.getRunningTasks(1);
+        if (taskList != null && !taskList.isEmpty()) {
+            ComponentName topActivity = taskList.get(0).topActivity;
+            if (topActivity != null
+                    && !topActivity.getPackageName().equals(
+                    context.getPackageName())) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

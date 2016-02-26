@@ -10,6 +10,7 @@ import android.content.pm.ResolveInfo;
 import android.net.Uri;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -134,6 +135,25 @@ public class PackageUtils {
             }
         }
         return false;
+    }
+
+    /**
+     * Get all apps
+     *
+     * @param context
+     * @return
+     */
+    public static List<PackageInfo> getAllApps(Context context) {
+        List<PackageInfo> apps = new ArrayList<PackageInfo>();
+        PackageManager packageManager = context.getPackageManager();
+        List<PackageInfo> packageInfos = packageManager.getInstalledPackages(0);
+        for (int i = 0; i < packageInfos.size(); i++) {
+            PackageInfo pak = packageInfos.get(i);
+            if ((pak.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) <= 0) {
+                apps.add(pak);
+            }
+        }
+        return apps;
     }
 
     /**

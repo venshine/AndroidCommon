@@ -1,5 +1,6 @@
 package com.wx.android.common.util;
 
+import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.view.View;
@@ -25,8 +26,25 @@ public class AnimatorUtils {
      * @param duration
      */
     public static void alpha(View v, float fromAlpha, float toAlpha, int duration) {
+        alpha(v, fromAlpha, toAlpha, duration, null);
+    }
+
+    /**
+     * alpha
+     *
+     * @param v
+     * @param fromAlpha
+     * @param toAlpha
+     * @param duration
+     * @param animatorListener
+     */
+    public static void alpha(View v, float fromAlpha, float toAlpha, int duration, Animator.AnimatorListener
+            animatorListener) {
         ObjectAnimator animator = ObjectAnimator.ofFloat(v, View.ALPHA, fromAlpha, toAlpha);
         animator.setDuration(duration);
+        if (animatorListener != null) {
+            animator.addListener(animatorListener);
+        }
         animator.start();
     }
 
@@ -39,8 +57,25 @@ public class AnimatorUtils {
      * @param duration
      */
     public static void translationX(View v, float fromX, float toX, int duration) {
+        translationX(v, fromX, toX, duration, null);
+    }
+
+    /**
+     * translation x
+     *
+     * @param v
+     * @param fromX
+     * @param toX
+     * @param duration
+     * @param animatorListener
+     */
+    public static void translationX(View v, float fromX, float toX, int duration, Animator.AnimatorListener
+            animatorListener) {
         ObjectAnimator animator = ObjectAnimator.ofFloat(v, View.TRANSLATION_X, fromX, toX);
         animator.setDuration(duration);
+        if (animatorListener != null) {
+            animator.addListener(animatorListener);
+        }
         animator.start();
     }
 
@@ -53,8 +88,25 @@ public class AnimatorUtils {
      * @param duration
      */
     public static void translationY(View v, float fromY, float toY, int duration) {
+        translationY(v, fromY, toY, duration, null);
+    }
+
+    /**
+     * translation y
+     *
+     * @param v
+     * @param fromY
+     * @param toY
+     * @param duration
+     * @param animatorListener
+     */
+    public static void translationY(View v, float fromY, float toY, int duration, Animator.AnimatorListener
+            animatorListener) {
         ObjectAnimator animator = ObjectAnimator.ofFloat(v, View.TRANSLATION_Y, fromY, toY);
         animator.setDuration(duration);
+        if (animatorListener != null) {
+            animator.addListener(animatorListener);
+        }
         animator.start();
     }
 
@@ -67,8 +119,25 @@ public class AnimatorUtils {
      * @param duration
      */
     public static void rotationX(View v, float fromX, float toX, int duration) {
+        rotationX(v, fromX, toX, duration, null);
+    }
+
+    /**
+     * rotation x
+     *
+     * @param v
+     * @param fromX
+     * @param toX
+     * @param duration
+     * @param animatorListener
+     */
+    public static void rotationX(View v, float fromX, float toX, int duration, Animator.AnimatorListener
+            animatorListener) {
         ObjectAnimator animator = ObjectAnimator.ofFloat(v, View.ROTATION_X, fromX, toX);
         animator.setDuration(duration);
+        if (animatorListener != null) {
+            animator.addListener(animatorListener);
+        }
         animator.start();
     }
 
@@ -81,8 +150,25 @@ public class AnimatorUtils {
      * @param duration
      */
     public static void rotationY(View v, float fromY, float toY, int duration) {
+        rotationY(v, fromY, toY, duration, null);
+    }
+
+    /**
+     * rotation y
+     *
+     * @param v
+     * @param fromY
+     * @param toY
+     * @param duration
+     * @param animatorListener
+     */
+    public static void rotationY(View v, float fromY, float toY, int duration, Animator.AnimatorListener
+            animatorListener) {
         ObjectAnimator animator = ObjectAnimator.ofFloat(v, View.ROTATION_Y, fromY, toY);
         animator.setDuration(duration);
+        if (animatorListener != null) {
+            animator.addListener(animatorListener);
+        }
         animator.start();
     }
 
@@ -95,8 +181,25 @@ public class AnimatorUtils {
      * @param duration
      */
     public static void scaleX(View v, float fromX, float toX, int duration) {
+        scaleX(v, fromX, toX, duration, null);
+    }
+
+    /**
+     * scale x
+     *
+     * @param v
+     * @param fromX
+     * @param toX
+     * @param duration
+     * @param animatorListener
+     */
+    public static void scaleX(View v, float fromX, float toX, int duration, Animator.AnimatorListener
+            animatorListener) {
         ObjectAnimator animator = ObjectAnimator.ofFloat(v, View.SCALE_X, fromX, toX);
         animator.setDuration(duration);
+        if (animatorListener != null) {
+            animator.addListener(animatorListener);
+        }
         animator.start();
     }
 
@@ -109,8 +212,25 @@ public class AnimatorUtils {
      * @param duration
      */
     public static void scaleY(View v, float fromY, float toY, int duration) {
+        scaleY(v, fromY, toY, duration, null);
+    }
+
+    /**
+     * scale y
+     *
+     * @param v
+     * @param fromY
+     * @param toY
+     * @param duration
+     * @param animatorListener
+     */
+    public static void scaleY(View v, float fromY, float toY, int duration, Animator.AnimatorListener
+            animatorListener) {
         ObjectAnimator animator = ObjectAnimator.ofFloat(v, View.SCALE_Y, fromY, toY);
         animator.setDuration(duration);
+        if (animatorListener != null) {
+            animator.addListener(animatorListener);
+        }
         animator.start();
     }
 
