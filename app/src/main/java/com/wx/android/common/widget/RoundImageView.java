@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import com.wx.android.common.util.BitmapUtils;
 
 /**
+ * Round ImageView
+ *
  * @author fengwx
  */
 public class RoundImageView extends ImageView {
@@ -49,21 +51,21 @@ public class RoundImageView extends ImageView {
     }
 
     /**
-     * Set border color, such as @code(Colors.BLACK)
-     *
-     * @param borderColor
-     */
-    public void setBorderColor(int borderColor) {
-        this.mBorderColor = borderColor;
-    }
-
-    /**
      * Set border color, such as '#aarrggbb'
      *
      * @param borderColor
      */
     public void setBorderColor(String borderColor) {
         this.mBorderColor = Color.parseColor(borderColor);
+    }
+
+    /**
+     * Set border color, such as @code(Color.BLACK)
+     *
+     * @param borderColor
+     */
+    public void setBorderColor(int borderColor) {
+        this.mBorderColor = borderColor;
     }
 
     /**
