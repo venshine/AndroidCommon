@@ -194,6 +194,29 @@ public class FileUtils {
     }
 
     /**
+     * rename file
+     *
+     * @param file
+     * @param newFileName
+     * @return
+     */
+    public static boolean renameFile(File file, String newFileName) {
+        File newFile = null;
+        if (file.isDirectory()) {
+            newFile = new File(file.getParentFile(), newFileName);
+        } else {
+            String temp = newFileName
+                    + file.getName().substring(
+                    file.getName().lastIndexOf('.'));
+            newFile = new File(file.getParentFile(), temp);
+        }
+        if (file.renameTo(newFile)) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * Get file name without suffix
      *
      * @param filePath
@@ -324,11 +347,41 @@ public class FileUtils {
         if (!file.isDirectory()) {
             return false;
         }
-        for (File f : file.listFiles()) {
-            if (f.isFile()) {
-                f.delete();
-            } else if (f.isDirectory()) {
-                deleteFile(f.getAbsolutePath());
+        if (file.isDirectory()) {
+            for (File f : file.listFiles()) {
+                if (f.isFile()) {
+                    f.delete();
+                } else if (f.isDirectory()) {
+                    deleteFile(f.getAbsolutePath());
+                }
+            }
+        }
+        return file.delete();
+    }
+
+    /**
+     * Delete file or folder
+     *
+     * @param file
+     * @return
+     */
+    public static boolean deleteFile(File file) {
+        if (!file.exists()) {
+            return true;
+        }
+        if (file.isFile()) {
+            return file.delete();
+        }
+        if (!file.isDirectory()) {
+            return false;
+        }
+        if (file.isDirectory()) {
+            File[] childFile = file.listFiles();
+            if (childFile == null || childFile.length == 0) {
+                return file.delete();
+            }
+            for (File f : childFile) {
+                deleteFile(f);
             }
         }
         return file.delete();
@@ -346,5 +399,29 @@ public class FileUtils {
         }
         File file = new File(path);
         return (file.exists() && file.isFile() ? file.length() : -1);
+    }
+
+    /**
+     * Get folder size
+     *
+     * @param file
+     * @return
+     * @throws Exception
+     */
+    public static long getFolderSize(File file) throws Exception {
+        long size = 0;
+        try {
+            File[] fileList = file.listFiles();
+            for (int i = 0; i < fileList.length; i++) {
+                if (fileList[i].isDirectory()) {
+                    size = size + getFolderSize(fileList[i]);
+                } else {
+                    size = size + fileList[i].length();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return size;
     }
 }

@@ -49,7 +49,7 @@ public class RoundImageView extends ImageView {
     }
 
     /**
-     * Set border color, such as @code(Color.BLACK)
+     * Set border color, such as @code(Colors.BLACK)
      *
      * @param borderColor
      */

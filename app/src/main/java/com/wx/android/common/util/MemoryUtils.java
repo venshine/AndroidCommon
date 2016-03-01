@@ -13,6 +13,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.math.BigDecimal;
 
 /**
  * Memory
@@ -22,28 +23,28 @@ import java.io.IOException;
 public class MemoryUtils {
 
     private static final int ERROR = -1;
-    private static final int AVALIABLE_EXTERNAL_MEMORY_SIZE = 20 * 1024 * 1024; // 20MB
+    private static final int AVALIABLE_EXTERNAL_MEMORY_SIZE = 50 * 1024 * 1024; // 50MB
 
     /**
-     * 外部存储是否可用
+     * Judge whether external momory is available
      *
      * @return
      */
-    public static boolean externalMemoryAvailable() {
+    public static boolean isExternalMemoryAvailable() {
         return Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
     }
 
     /**
-     * 外部存储是否已满
+     * Judge whether external memory is full
      *
      * @return
      */
-    public static boolean externalMemoryFull() {
+    public static boolean isExternalMemoryFull() {
         return getAvailableExternalMemorySize() - AVALIABLE_EXTERNAL_MEMORY_SIZE < 0;
     }
 
     /**
-     * 获取内部存储可用空间大小
+     * Get available internal memory size
      *
      * @return
      */
@@ -56,7 +57,7 @@ public class MemoryUtils {
     }
 
     /**
-     * 获取内部存储空间大小
+     * Get internal memory size
      *
      * @return
      */
@@ -69,12 +70,12 @@ public class MemoryUtils {
     }
 
     /**
-     * 获取外部存储可用空间大小
+     * Get available external memory size
      *
      * @return
      */
     public static long getAvailableExternalMemorySize() {
-        if (externalMemoryAvailable()) {
+        if (isExternalMemoryAvailable()) {
             File path = Environment.getExternalStorageDirectory();
             StatFs stat = new StatFs(path.getPath());
             long blockSize = stat.getBlockSize();
@@ -86,12 +87,12 @@ public class MemoryUtils {
     }
 
     /**
-     * 获取外部存储空间大小
+     * Get external memory size
      *
      * @return
      */
     public static long getTotalExternalMemorySize() {
-        if (externalMemoryAvailable()) {
+        if (isExternalMemoryAvailable()) {
             File path = Environment.getExternalStorageDirectory();
             StatFs stat = new StatFs(path.getPath());
             long blockSize = stat.getBlockSize();
@@ -156,6 +157,43 @@ public class MemoryUtils {
         ActivityManager.MemoryInfo mi = new ActivityManager.MemoryInfo();
         am.getMemoryInfo(mi);
         return Formatter.formatFileSize(context, mi.totalMem);
+    }
+
+    /**
+     * Get format size
+     *
+     * @param size
+     * @return
+     */
+    public static String getFormatSize(double size) {
+        double kiloByte = size / 1024;
+        if (kiloByte < 1) {
+            return size + "Byte";
+        }
+
+        double megaByte = kiloByte / 1024;
+        if (megaByte < 1) {
+            BigDecimal result1 = new BigDecimal(Double.toString(kiloByte));
+            return result1.setScale(2, BigDecimal.ROUND_HALF_UP)
+                    .toPlainString() + "KB";
+        }
+
+        double gigaByte = megaByte / 1024;
+        if (gigaByte < 1) {
+            BigDecimal result2 = new BigDecimal(Double.toString(megaByte));
+            return result2.setScale(2, BigDecimal.ROUND_HALF_UP)
+                    .toPlainString() + "MB";
+        }
+
+        double teraBytes = gigaByte / 1024;
+        if (teraBytes < 1) {
+            BigDecimal result3 = new BigDecimal(Double.toString(gigaByte));
+            return result3.setScale(2, BigDecimal.ROUND_HALF_UP)
+                    .toPlainString() + "GB";
+        }
+        BigDecimal result4 = new BigDecimal(teraBytes);
+        return result4.setScale(2, BigDecimal.ROUND_HALF_UP).toPlainString()
+                + "TB";
     }
 
 }

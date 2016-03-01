@@ -2,6 +2,7 @@ package com.wx.android.common.util;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Configuration;
 import android.graphics.Rect;
 import android.util.DisplayMetrics;
 import android.view.Window;
@@ -12,6 +13,26 @@ import android.view.Window;
  * @author fengwx
  */
 public class DisplayUtils {
+
+    /**
+     * Judge whether screen is landscape
+     *
+     * @param context
+     * @return
+     */
+    public static boolean isLandscape(Context context) {
+        return context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
+    }
+
+    /**
+     * Judge whether screen is portrait
+     *
+     * @param context
+     * @return
+     */
+    public static boolean isPortrait(Context context) {
+        return context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
+    }
 
     /**
      * Get screen width, in pixels
@@ -174,5 +195,51 @@ public class DisplayUtils {
         }
         float scale = context.getResources().getDisplayMetrics().density;
         return px / scale;
+    }
+
+    /**
+     * Convert px to sp
+     *
+     * @param context
+     * @param px
+     * @return
+     */
+    public static int px2sp(Context context, float px) {
+        return (int) (pxToSp(context, px) + 0.5f);
+    }
+
+    /**
+     * Convert px to sp
+     *
+     * @param context
+     * @param px
+     * @return
+     */
+    private static float pxToSp(Context context, float px) {
+        float fontScale = context.getResources().getDisplayMetrics().scaledDensity;
+        return px / fontScale;
+    }
+
+    /**
+     * Convert sp to px
+     *
+     * @param context
+     * @param sp
+     * @return
+     */
+    public static int sp2px(Context context, float sp) {
+        return (int) (spToPx(context, sp) + 0.5f);
+    }
+
+    /**
+     * Convert sp to px
+     *
+     * @param context
+     * @param sp
+     * @return
+     */
+    private static float spToPx(Context context, float sp) {
+        float fontScale = context.getResources().getDisplayMetrics().scaledDensity;
+        return sp * fontScale;
     }
 }

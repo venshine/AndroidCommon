@@ -13,17 +13,22 @@ import java.util.Date;
  */
 public class CalendarUtils {
 
-    public static final String PATTERN = "yyyyMMdd";
+    public static final String DATE_FORMAT = "yyyyMMdd";
 
-    public static final String PATTERN2 = "yyyy-MM-dd HH:mm:ss:ms";
+    public static final String TIME_FORMAT = "yyyy-MM-dd HH:mm:ss:ms";
 
-    public static final String[] MONTHS = {"JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"};
+    public static final String[] MONTHS = {"JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT",
+            "NOV", "DEC"};
 
-    public static final String[] MONTHS2 = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+    public static final String[] MONTHS2 = {"January", "February", "March", "April", "May", "June", "July", "August",
+            "September", "October", "November", "December"};
 
     public static final String[] WEEKS = {"SUN", "MON", "TUES", "WED", "THUR", "FRI", "SAT"};
 
-    public static final String[] WEEKS2 = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+    public static final String[] WEEKS2 = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
+            "Saturday"};
+
+    public static final int DAY = 24 * 60 * 60 * 1000;
 
     /**
      * Get date by year, month, day.
@@ -44,7 +49,7 @@ public class CalendarUtils {
      */
     public static String getCurrentDate() {
         Date now = new Date();
-        SimpleDateFormat f = new SimpleDateFormat(PATTERN);
+        SimpleDateFormat f = new SimpleDateFormat(DATE_FORMAT);
         return f.format(now);
     }
 
@@ -56,7 +61,7 @@ public class CalendarUtils {
      * @return
      */
     public static String getDate(long time) {
-        SimpleDateFormat df = new SimpleDateFormat(PATTERN);
+        SimpleDateFormat df = new SimpleDateFormat(DATE_FORMAT);
         Date now = new Date(time);
         return df.format(now);
     }
@@ -74,7 +79,7 @@ public class CalendarUtils {
         SimpleDateFormat df = new SimpleDateFormat(parrern);
         try {
             Date date = df.parse(datetime);
-            SimpleDateFormat df2 = new SimpleDateFormat(PATTERN);
+            SimpleDateFormat df2 = new SimpleDateFormat(DATE_FORMAT);
             return df2.format(date);
         } catch (ParseException e) {
             e.printStackTrace();
@@ -116,8 +121,49 @@ public class CalendarUtils {
      */
     public static String getTime() {
         Date now = new Date();
-        SimpleDateFormat df = new SimpleDateFormat(PATTERN2);
+        SimpleDateFormat df = new SimpleDateFormat(TIME_FORMAT);
         return df.format(now);
+    }
+
+    /**
+     * Convert long time to String time
+     *
+     * @param time
+     * @param format
+     * @return
+     */
+    public static String getTime(long time, String format) {
+        if (time > 0) {
+            if (StringUtils.isEmpty(format)) {
+                format = DATE_FORMAT;
+            }
+            SimpleDateFormat sf = new SimpleDateFormat(format);
+            Date date = new Date(time);
+            return sf.format(date);
+        }
+        return "";
+    }
+
+    /**
+     * Convert String time to long time
+     *
+     * @param time
+     * @param format
+     * @return
+     */
+    public static long getTime(String time, String format) {
+        try {
+            if (null != time) {
+                if (format == null) {
+                    format = DATE_FORMAT;
+                }
+                SimpleDateFormat sf = new SimpleDateFormat(format);
+                return sf.parse(time).getTime();
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return 0;
     }
 
     /**
@@ -163,14 +209,14 @@ public class CalendarUtils {
     }
 
     /**
-     * Get week by datetime, datetime format must be contracted with PATTERN.
+     * Get week by datetime, datetime format must be contracted with DATE_FORMAT.
      *
      * @param datetime
      * @return
      */
     public static String getWeek(String datetime) {
         Calendar cal = Calendar.getInstance();
-        DateFormat f = new SimpleDateFormat(PATTERN);
+        DateFormat f = new SimpleDateFormat(DATE_FORMAT);
         try {
             cal.setTime(f.parse(datetime));
             int week_index = cal.get(Calendar.DAY_OF_WEEK) - 1;
@@ -300,6 +346,65 @@ public class CalendarUtils {
             return week_index;
         }
         return -1;
+    }
+
+    /**
+     * Judge whether dateTime is today by sysTime and dateTime
+     *
+     * @param sysTime  server time
+     * @param dateTime publish time
+     * @return
+     */
+    public static boolean isToday(long sysTime, long dateTime) {
+        String s = getTime(sysTime, DATE_FORMAT); // 2015-06-15，2015-06-15 14:44:02
+        long l = getTime(s, DATE_FORMAT); // 1434297600000， 2015-06-15 00:00:00
+        return dateTime - l >= 0;
+    }
+
+    /**
+     * Judge whether dateTime is yesterday by sysTime and dateTime
+     *
+     * @param sysTime  server time
+     * @param dateTime publish time
+     * @return
+     */
+    public static boolean isYesterday(long sysTime, long dateTime) {
+        long yesterday = sysTime - DAY;
+        String s = getTime(yesterday, DATE_FORMAT); // 2015-06-14，2015-06-14 14:44:02
+        long l = getTime(s, DATE_FORMAT); // 1434297600000， 2015-06-14 00:00:00
+        return dateTime - l >= 0;
+    }
+
+    /**
+     * Print date time by sysTime and dateTime
+     *
+     * @param sysTime  server time
+     * @param dateTime publish time
+     * @return
+     */
+    public static String printDate(long sysTime, long dateTime) {
+        long min = 60 * 1000;
+        long hour = 60 * min;
+        if (sysTime - dateTime <= hour) { // one hour
+            if (sysTime - dateTime <= min) { // one minute
+                return "just now";
+            }
+            return ((sysTime - dateTime) / min) + "minutes ago";
+        }
+        if (isToday(sysTime, dateTime)) {// today
+            SimpleDateFormat sdf1 = new SimpleDateFormat("HH:mm");
+            Date date1 = new Date(dateTime);
+            return "today " + sdf1.format(date1);
+        }
+        if (isYesterday(sysTime, dateTime)) {// yesterday
+            SimpleDateFormat sdf2 = new SimpleDateFormat("HH:mm");
+            Date date2 = new Date(dateTime);
+            return "yesterday " + sdf2.format(date2);
+        }
+        // other：MM-dd hh:mm
+        SimpleDateFormat sdf = new SimpleDateFormat("MM-dd HH:mm");
+        Date date = new Date(dateTime);
+        return sdf.format(date);
     }
 
 }
