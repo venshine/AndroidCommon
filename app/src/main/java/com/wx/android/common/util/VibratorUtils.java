@@ -11,9 +11,10 @@ import android.os.Vibrator;
  */
 public class VibratorUtils {
 
-    private static Vibrator vibrator = null;
-
+    private static final int VIBRATE_TIME = 1000;
     private static final long[] PATTERN = new long[]{10, 1000, 10, 1000};
+
+    private static Vibrator vibrator = null;
 
     private static Vibrator getInstance(Context context) {
         if (vibrator == null) {
@@ -23,16 +24,27 @@ public class VibratorUtils {
     }
 
     /**
-     * vibrate
+     * Vibrate constantly in 1000ms
      *
      * @param context
      */
     public static void vibrate(Context context) {
-        vibrate(context, PATTERN, 0);
+        vibrate(context, VIBRATE_TIME);
     }
 
     /**
-     * vibrate
+     * Vibrate constantly for the specified period of time.
+     *
+     * @param context
+     * @param milliseconds
+     */
+    public static void vibrate(Context context, long milliseconds) {
+        Vibrator vibrator = getInstance(context);
+        vibrator.vibrate(milliseconds);
+    }
+
+    /**
+     * Vibrate with a given pattern.
      *
      * @param context
      * @param pattern

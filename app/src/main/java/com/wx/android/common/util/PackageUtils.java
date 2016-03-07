@@ -21,6 +21,32 @@ import java.util.List;
 public class PackageUtils {
 
     /**
+     * Check whether a particular package has been granted a particular permission.
+     *
+     * @param context
+     * @param permName
+     * @param pkgName
+     * @return
+     */
+    public static boolean checkPermission(Context context, String permName, String pkgName) {
+        PackageManager pm = context.getPackageManager();
+        boolean permission = (PackageManager.PERMISSION_GRANTED == pm.checkPermission(permName, pkgName));
+        return permission;
+    }
+
+    /**
+     * Check whether a particular package has been granted a particular permission.
+     *
+     * @param context
+     * @param permName
+     * @return
+     */
+    public static boolean checkPermission(Context context, String permName) {
+        int perm = context.checkCallingOrSelfPermission(permName);
+        return perm == PackageManager.PERMISSION_GRANTED;
+    }
+
+    /**
      * Install package
      *
      * @param context
