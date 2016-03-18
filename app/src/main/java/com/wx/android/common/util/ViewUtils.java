@@ -22,6 +22,21 @@ import java.lang.reflect.Field;
 public class ViewUtils {
 
     /**
+     * Measure view's height
+     *
+     * @param view
+     * @return
+     */
+    public static int measureViewHeight(View view) {
+        view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT));
+        int w = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
+        int h = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
+        view.measure(w, h);
+        return view.getMeasuredHeight();
+    }
+
+    /**
      * Get TextView's height, TextView's width is full screen width
      *
      * @param textView
