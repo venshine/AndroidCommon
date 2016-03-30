@@ -1,3 +1,18 @@
+/*
+ * Copyright (C) 2016 venshine.cn@gmail.com
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.wx.android.common.log;
 
 import android.util.Log;
@@ -10,22 +25,25 @@ import java.util.Arrays;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * Log manager
+ * 打印日志核心类
  * <p/>
  * 1.Logger.d("MSG");<p/>
  * 2.Logger.d("MSG{}MSG{}", "first", "second");<p/>
  * 3.Logger.d("TAG", "MSG{}MSG{}", "first", "second");<p/>
  * 4.Logger.d(Throwable, "TAG", "MSG{}MSG{}", "first", "second");<p/>
  *
- * @author fengwx
+ * @author venshine
  */
 public final class Logger {
 
-    private static int mLevel = CommonCfg.LOG;
-
     private static final String mFlag = "{}";   // message中的标记，用于替换字符
+    private static int mLevel = CommonCfg.LOG;
+    private static ConcurrentHashMap<String, String> tagMap = new ConcurrentHashMap<String, String>(10);    //
+    // 记录全局tag，即整个类的tag标签
 
-    private static ConcurrentHashMap<String, String> tagMap = new ConcurrentHashMap<String, String>(10);    // 记录全局tag，即整个类的tag标签
+    @Deprecated
+    private Logger() {
+    }
 
     /**
      * 初始化全局tag，一个类中仅能初始化一次，最好在静态方法块中初始化。如果需要重新初始化，先调用clearTag()方法。
@@ -35,9 +53,10 @@ public final class Logger {
     public static void initTag(String tag) {
         if (!StringUtils.isEmpty(tag)) {
             String fileName = Thread.currentThread().getStackTrace()[3]
-                    .getFileName();  // className可能出现org.fengwx.core.Main$4这种命名，因此使用fileName
+                    .getFileName();  // className可能出现com.wx.core.Main$4这种命名，因此使用fileName
             if (tagMap.size() > 0 && tagMap.containsKey(fileName)) {
-                throw new IllegalStateException("initTag() only can be invoked one time in a class, please invoke clearTag() first.");
+                throw new IllegalStateException("initTag() only can be invoked one time in a class, please invoke " +
+                        "clearTag() first.");
             }
             tagMap.put(fileName, tag);
         }
@@ -48,14 +67,10 @@ public final class Logger {
      */
     public static void clearTag() {
         String fileName = Thread.currentThread().getStackTrace()[3]
-                .getFileName();  // className可能出现org.fengwx.core.Main$4这种命名，因此使用fileName
+                .getFileName();  // className可能出现com.wx.core.Main$4这种命名，因此使用fileName
         if (tagMap.size() > 0 && tagMap.containsKey(fileName)) {
             tagMap.remove(fileName);
         }
-    }
-
-    @Deprecated
-    private Logger() {
     }
 
     /**
@@ -346,7 +361,8 @@ public final class Logger {
                 String value = result.toString();
                 result.delete(0, result.length());
                 result.append(value.substring(0, index))
-                        .append(((args[i] == null) ? "" : String.valueOf(args[i]))).append(value.substring(index + mFlag.length()));
+                        .append(((args[i] == null) ? "" : String.valueOf(args[i]))).append(value.substring(index +
+                        mFlag.length()));
                 i++;
             }
             return result.toString();

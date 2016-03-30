@@ -1,3 +1,18 @@
+/*
+ * Copyright (C) 2016 venshine.cn@gmail.com
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.wx.android.common.util;
 
 import android.animation.Animator;
@@ -8,9 +23,9 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.CycleInterpolator;
 
 /**
- * Animation effect, it contains alpha, translation, rotation, scale.
+ * 动画效果，包含alpha, translation, rotation, scale.
  *
- * @author fengwx
+ * @author venshine
  */
 public class AnimatorUtils {
 
@@ -268,7 +283,7 @@ public class AnimatorUtils {
     }
 
     /**
-     * shake x
+     * shake y
      *
      * @param v
      * @param offset
@@ -283,7 +298,7 @@ public class AnimatorUtils {
     }
 
     /**
-     * breath light effect
+     * 呼吸灯效果
      *
      * @param v
      */
@@ -292,7 +307,7 @@ public class AnimatorUtils {
     }
 
     /**
-     * breath light effect
+     * 呼吸灯效果
      *
      * @param v
      * @param fromRange
