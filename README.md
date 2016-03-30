@@ -78,7 +78,7 @@ Proguard
 
 Setup
 --
-* Download the project from [GitHub](https://github.com/ifwx/AndroidCommon.git)
+* Download the project from [GitHub](https://github.com/venshine/AndroidCommon.git)
 * Import it to your Eclipse workspace or IntelliJ IDEA project
 * Set your project properties, then add a android project library, and select AndroidCommon
 
@@ -107,52 +107,52 @@ License
     limitations under the License.
 
 
-[1]: https://github.com/ifwx/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/AnimationUtils.java
-[2]: https://github.com/ifwx/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/AppUtils.java
-[3]: https://github.com/ifwx/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/ArrayUtils.java
-[4]: https://github.com/ifwx/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/AssetsUtils.java
-[5]: https://github.com/ifwx/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/BASE64Utils.java
-[6]: https://github.com/ifwx/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/BitmapUtils.java
-[7]: https://github.com/ifwx/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/BlurUtils.java
-[8]: https://github.com/ifwx/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/ByteUtils.java
-[9]: https://github.com/ifwx/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/CalendarUtils.java
-[10]: https://github.com/ifwx/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/ClipboardUtils.java
-[11]: https://github.com/ifwx/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/CollectionUtils.java
-[12]: https://github.com/ifwx/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/CommonUtils.java
-[13]: https://github.com/ifwx/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/CpuUtils.java
-[14]: https://github.com/ifwx/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/DeviceUtils.java
-[15]: https://github.com/ifwx/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/DisplayUtils.java
-[16]: https://github.com/ifwx/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/FileUtils.java
-[17]: https://github.com/ifwx/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/FragmentUtils.java
-[18]: https://github.com/ifwx/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/HandlerUtils.java
-[19]: https://github.com/ifwx/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/IOUtils.java
-[20]: https://github.com/ifwx/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/ImageUtils.java
-[21]: https://github.com/ifwx/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/InputMethodUtils.java
-[22]: https://github.com/ifwx/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/IntentUtils.java
-[23]: https://github.com/ifwx/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/JsonUtils.java
-[24]: https://github.com/ifwx/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/LogUtils.java
-[25]: https://github.com/ifwx/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/MD5Utils.java
-[26]: https://github.com/ifwx/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/MapUtils.java
-[27]: https://github.com/ifwx/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/MemoryUtils.java
-[28]: https://github.com/ifwx/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/NetworkUtils.java
-[29]: https://github.com/ifwx/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/NumberUtils.java
-[30]: https://github.com/ifwx/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/ObjectUtils.java
-[31]: https://github.com/ifwx/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/PackageUtils.java
-[32]: https://github.com/ifwx/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/PropertyUtils.java
-[33]: https://github.com/ifwx/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/RandomUtils.java
-[34]: https://github.com/ifwx/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/ResourceUtils.java
-[35]: https://github.com/ifwx/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/SHA1Utils.java
-[36]: https://github.com/ifwx/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/SerializableUtils.java
-[37]: https://github.com/ifwx/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/SharedPreferencesUtils.java
-[38]: https://github.com/ifwx/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/ShellUtils.java
-[39]: https://github.com/ifwx/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/StringUtils.java
-[40]: https://github.com/ifwx/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/SystemUtils.java
-[41]: https://github.com/ifwx/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/TelephonyUtils.java
-[42]: https://github.com/ifwx/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/ThreadUtils.java
-[43]: https://github.com/ifwx/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/TimeUtils.java
-[44]: https://github.com/ifwx/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/ToastUtils.java
-[45]: https://github.com/ifwx/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/UrlUtils.java
-[46]: https://github.com/ifwx/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/VibratorUtils.java
-[47]: https://github.com/ifwx/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/ViewUtils.java
-[48]: http://ifwx.github.io
+[1]: https://github.com/venshine/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/AnimationUtils.java
+[2]: https://github.com/venshine/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/AppUtils.java
+[3]: https://github.com/venshine/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/ArrayUtils.java
+[4]: https://github.com/venshine/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/AssetsUtils.java
+[5]: https://github.com/venshine/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/BASE64Utils.java
+[6]: https://github.com/venshine/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/BitmapUtils.java
+[7]: https://github.com/venshine/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/BlurUtils.java
+[8]: https://github.com/venshine/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/ByteUtils.java
+[9]: https://github.com/venshine/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/CalendarUtils.java
+[10]: https://github.com/venshine/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/ClipboardUtils.java
+[11]: https://github.com/venshine/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/CollectionUtils.java
+[12]: https://github.com/venshine/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/CommonUtils.java
+[13]: https://github.com/venshine/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/CpuUtils.java
+[14]: https://github.com/venshine/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/DeviceUtils.java
+[15]: https://github.com/venshine/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/DisplayUtils.java
+[16]: https://github.com/venshine/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/FileUtils.java
+[17]: https://github.com/venshine/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/FragmentUtils.java
+[18]: https://github.com/venshine/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/HandlerUtils.java
+[19]: https://github.com/venshine/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/IOUtils.java
+[20]: https://github.com/venshine/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/ImageUtils.java
+[21]: https://github.com/venshine/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/InputMethodUtils.java
+[22]: https://github.com/venshine/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/IntentUtils.java
+[23]: https://github.com/venshine/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/JsonUtils.java
+[24]: https://github.com/venshine/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/LogUtils.java
+[25]: https://github.com/venshine/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/MD5Utils.java
+[26]: https://github.com/venshine/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/MapUtils.java
+[27]: https://github.com/venshine/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/MemoryUtils.java
+[28]: https://github.com/venshine/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/NetworkUtils.java
+[29]: https://github.com/venshine/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/NumberUtils.java
+[30]: https://github.com/venshine/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/ObjectUtils.java
+[31]: https://github.com/venshine/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/PackageUtils.java
+[32]: https://github.com/venshine/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/PropertyUtils.java
+[33]: https://github.com/venshine/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/RandomUtils.java
+[34]: https://github.com/venshine/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/ResourceUtils.java
+[35]: https://github.com/venshine/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/SHA1Utils.java
+[36]: https://github.com/venshine/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/SerializableUtils.java
+[37]: https://github.com/venshine/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/SharedPreferencesUtils.java
+[38]: https://github.com/venshine/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/ShellUtils.java
+[39]: https://github.com/venshine/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/StringUtils.java
+[40]: https://github.com/venshine/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/SystemUtils.java
+[41]: https://github.com/venshine/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/TelephonyUtils.java
+[42]: https://github.com/venshine/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/ThreadUtils.java
+[43]: https://github.com/venshine/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/TimeUtils.java
+[44]: https://github.com/venshine/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/ToastUtils.java
+[45]: https://github.com/venshine/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/UrlUtils.java
+[46]: https://github.com/venshine/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/VibratorUtils.java
+[47]: https://github.com/venshine/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/ViewUtils.java
+[48]: http://venshine.github.io
 
