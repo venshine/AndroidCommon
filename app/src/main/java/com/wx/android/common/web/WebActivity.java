@@ -43,9 +43,9 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.wx.android.common.log.Logger;
 import com.wx.android.common.util.DisplayUtils;
 import com.wx.android.common.util.StringUtils;
+import com.wx.logger.Logger;
 
 /**
  * Web页面

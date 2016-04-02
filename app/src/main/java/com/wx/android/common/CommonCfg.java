@@ -15,8 +15,6 @@
  */
 package com.wx.android.common;
 
-import com.wx.android.common.log.Level;
-
 /**
  * Common config
  *
@@ -24,6 +22,5 @@ import com.wx.android.common.log.Level;
  */
 public class CommonCfg {
 
-    public static final int LOG = Level.DEBUG;
 
 }

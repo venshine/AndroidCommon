@@ -15,7 +15,7 @@
  */
 package com.wx.android.common.util;
 
-import com.wx.android.common.log.Logger;
+import com.wx.logger.Logger;
 
 import java.io.Closeable;
 import java.io.IOException;

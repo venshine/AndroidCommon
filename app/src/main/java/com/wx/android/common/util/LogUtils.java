@@ -17,8 +17,8 @@ package com.wx.android.common.util;
 
 import android.util.Log;
 
-import com.wx.android.common.CommonCfg;
-import com.wx.android.common.log.Level;
+import com.wx.logger.Config;
+import com.wx.logger.Level;
 
 /**
  * Log日志打印操作
@@ -35,7 +35,7 @@ public class LogUtils {
      * @param msg
      */
     public static void d(String msg) {
-        if (CommonCfg.LOG <= Level.DEBUG) {
+        if (Config.LOG <= Level.DEBUG) {
             Log.d(TAG, msg);
         }
     }
@@ -46,7 +46,7 @@ public class LogUtils {
      * @param msg
      */
     public static void e(String msg) {
-        if (CommonCfg.LOG <= Level.ERROR) {
+        if (Config.LOG <= Level.ERROR) {
             Log.e(TAG, msg);
         }
     }
