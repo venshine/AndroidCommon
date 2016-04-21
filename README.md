@@ -1,6 +1,6 @@
 AndroidCommon
 ==
-AndroidCommon is a simple open source android library, it provides many useful classes to help us develop.
+一个简单的开源Android工具类库，提供许多常用的类帮助我们开发程序。
 
 These are the Android Common Utils.
 
