@@ -84,7 +84,10 @@ Setup
 
 Usage
 --
-Use the AndroidCommon as a third jar.
+##### Gradle:
+```groovy
+compile 'com.wx.android.common:common:1.0.1'
+```
 
 Author
 --
