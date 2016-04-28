@@ -21,6 +21,7 @@ classes/
 obj/
 # Local configuration file (sdk path, etc)
 local.properties
+gradle.properties
 
 # Eclipse project files
 .classpath
