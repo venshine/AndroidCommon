@@ -24,5 +24,4 @@ dependencies {
     compile 'com.wx.logger:logger:1.0.1'
 }
 
-//apply from: 'https://raw.githubusercontent.com/venshine/gradle-bintray-upload/master/bintray.gradle'
-apply from: 'http://git.oschina.net/venshine/gradle-bintray-upload/raw/master/bintray.gradle'
+//apply from: 'http://git.oschina.net/venshine/gradle-bintray-upload/raw/master/bintray.gradle'
