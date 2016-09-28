@@ -22,13 +22,8 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
-import android.content.pm.Signature;
 import android.graphics.drawable.Drawable;
 
-import java.io.ByteArrayInputStream;
-import java.security.cert.CertificateException;
-import java.security.cert.CertificateFactory;
-import java.security.cert.X509Certificate;
 import java.util.List;
 
 import javax.security.auth.x500.X500Principal;
@@ -208,30 +203,37 @@ public class AppUtils {
     /**
      * Judge whether an app is dubuggable
      *
-     * @param ctx
+     * @param context
      * @return
      */
-    public static boolean isDebuggable(Context ctx) {
-        boolean debuggable = false;
+    public static boolean isApkDebuggable(Context context) {
         try {
-            PackageInfo pinfo = ctx.getPackageManager().getPackageInfo(ctx.getPackageName(), PackageManager
-                    .GET_SIGNATURES);
-            Signature signatures[] = pinfo.signatures;
-            for (int i = 0; i < signatures.length; i++) {
-                CertificateFactory cf = CertificateFactory.getInstance("X.509");
-                ByteArrayInputStream stream = new ByteArrayInputStream(signatures[i].toByteArray());
-                X509Certificate cert = (X509Certificate) cf
-                        .generateCertificate(stream);
-                debuggable = cert.getSubjectX500Principal().equals(DEBUG_DN);
-                if (debuggable) {
-                    break;
-                }
-            }
+            ApplicationInfo info = context.getApplicationInfo();
+            return (info.flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;
+        } catch (Exception e) {
 
-        } catch (NameNotFoundException e) {
-        } catch (CertificateException e) {
         }
-        return debuggable;
+        return false;
+    }
+
+    /**
+     * Judge whether an app is dubuggable by package name
+     *
+     * @param context
+     * @param packageName
+     * @return
+     */
+    public static boolean isApkDebugable(Context context, String packageName) {
+        try {
+            PackageInfo pkginfo = context.getPackageManager().getPackageInfo(
+                    packageName, PackageManager.GET_ACTIVITIES);
+            if (pkginfo != null) {
+                ApplicationInfo info = pkginfo.applicationInfo;
+                return (info.flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;
+            }
+        } catch (Exception e) {
+        }
+        return false;
     }
 
     /**
