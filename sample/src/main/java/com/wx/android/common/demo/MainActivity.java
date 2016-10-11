@@ -32,7 +32,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void click(View v) {
+    public void click1(View v) {
+    }
+
+    public void click2(View v) {
     }
 
 }
