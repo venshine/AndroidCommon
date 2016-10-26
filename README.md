@@ -91,7 +91,7 @@ compile 'com.wx.android.common:common:1.0.1'
 
 Author
 --
-[venshine][48] venshine.cn@gmail.com
+* Email：venshine.cn@gmail.com
 
 License
 --
@@ -157,5 +157,4 @@ License
 [45]: https://github.com/venshine/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/UrlUtils.java
 [46]: https://github.com/venshine/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/VibratorUtils.java
 [47]: https://github.com/venshine/AndroidCommon/blob/master/app/src/main/java/com/wx/android/common/util/ViewUtils.java
-[48]: http://venshine.github.io
 
