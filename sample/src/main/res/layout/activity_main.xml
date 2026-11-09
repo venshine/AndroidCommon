@@ -1,32 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:orientation="vertical"
+        android:padding="16dp">
 
-    <ImageView
-        android:id="@+id/imageview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp" />
+        <Button
+            android:id="@+id/btn_digest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/demo_digest" />
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="click1"
-        android:text="button1" />
+        <Button
+            android:id="@+id/btn_verify"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/demo_verify" />
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="click2"
-        android:text="button2" />
+        <Button
+            android:id="@+id/btn_toast"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/demo_toast" />
 
-</LinearLayout>
+        <Button
+            android:id="@+id/btn_clipboard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/demo_clipboard" />
+
+        <Button
+            android:id="@+id/btn_bitmap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/demo_bitmap" />
+
+        <Button
+            android:id="@+id/btn_app"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/demo_app" />
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_marginTop="12dp"
+            android:contentDescription="@null" />
+
+        <TextView
+            android:id="@+id/output"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:textIsSelectable="true" />
+    </LinearLayout>
+</ScrollView>

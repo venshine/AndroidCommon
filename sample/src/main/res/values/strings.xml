@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">AndroidCommon</string>
+    <string name="demo_digest">Digest</string>
+    <string name="demo_verify">Verify</string>
+    <string name="demo_toast">Toast</string>
+    <string name="demo_clipboard">Clipboard</string>
+    <string name="demo_bitmap">Bitmap</string>
+    <string name="demo_app">App info</string>
 </resources>
