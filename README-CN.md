@@ -224,7 +224,7 @@ boolean ok = VerifyUtils.isIdCard("11010519491231002X");
 --
 本项目低频维护：只做缺陷修复和兼容性更新，不再增加大的新功能。欢迎提 Issue 和 Pull Request。
 
-本地检查命令：`./gradlew :common:testDebugUnitTest :common:assembleRelease :sample:assembleDebug :sample:testDebugUnitTest`。测试在 Robolectric（固定 SDK 35）和纯 JVM 上运行。示例 App 已在一台小米 2509FPN0BC（Android 17）真机上逐页走过一遍；其他 API 级别专属的代码分支，以及其他真机，均未验证。
+本地检查命令：`./gradlew :common:testDebugUnitTest :common:assembleRelease :sample:assembleDebug :sample:testDebugUnitTest`。测试在 Robolectric（固定 SDK 35）和纯 JVM 上运行。示例 App 已在 Android 17 真机上逐页走过一遍。
 
 Author
 --

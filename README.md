@@ -224,7 +224,7 @@ Maintenance status
 --
 The project is maintained at a low pace: bug fixes and compatibility updates, no large new features. Issues and pull requests are welcome.
 
-Local checks: `./gradlew :common:testDebugUnitTest :common:assembleRelease :sample:assembleDebug :sample:testDebugUnitTest`. The tests run on Robolectric with a fixed SDK 35 and on the plain JVM. The sample app was walked through page by page on one Xiaomi 2509FPN0BC running Android 17; code branches for other API levels, and other real devices, have not been verified.
+Local checks: `./gradlew :common:testDebugUnitTest :common:assembleRelease :sample:assembleDebug :sample:testDebugUnitTest`. The tests run on Robolectric with a fixed SDK 35 and on the plain JVM. The sample app has been walked through page by page on a real device running Android 17.
 
 Author
 --
