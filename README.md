@@ -6,6 +6,8 @@ English | [简体中文](README-CN.md)
 
 A small collection of Android utility classes, written in Kotlin and callable from Java. Version 2.0.0 is a rewrite: classes that the Android framework, AndroidX or the Kotlin standard library already cover were removed, the rest were rewritten for current Android and covered with unit tests.
 
+[**Download the sample APK**](https://github.com/venshine/AndroidCommon/releases/download/2.0.0/AndroidCommon-sample-2.0.0.apk)
+
 Contents
 --
 All sources live in [`common/src/main/kotlin/com/wx/android/common`](common/src/main/kotlin/com/wx/android/common).

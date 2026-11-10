@@ -6,6 +6,8 @@
 
 一个小型的 Android 工具类库，用 Kotlin 编写，Java 也可以直接调用。2.0.0 是一次重写：Android 框架、AndroidX 或 Kotlin 标准库已经覆盖的工具类被删除，保留下来的按当前 Android 重写，并补充了单元测试。
 
+[**下载示例 APK**](https://github.com/venshine/AndroidCommon/releases/download/2.0.0/AndroidCommon-sample-2.0.0.apk)
+
 内容
 --
 全部源码位于 [`common/src/main/kotlin/com/wx/android/common`](common/src/main/kotlin/com/wx/android/common)。
