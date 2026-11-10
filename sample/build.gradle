@@ -23,10 +23,6 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-    lint {
-        // 示例不发通知；库里的 NotificationUtils 在 API 33+ 需要 POST_NOTIFICATIONS，使用方按需声明并申请
-        disable 'NotificationPermission'
-    }
     testOptions {
         unitTests.includeAndroidResources = true
     }

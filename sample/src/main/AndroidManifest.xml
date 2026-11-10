@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!-- 库本身不声明任何权限，下面三项是示例页演示对应工具类所需 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
         android:name=".DemoApp"
@@ -17,6 +20,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".FilterActivity" android:exported="false" />
+        <activity android:name=".VerifyActivity" android:exported="false" />
+        <activity android:name=".SystemActivity" android:exported="false" />
+        <activity android:name=".ViewActivity" android:exported="false" />
+        <activity android:name=".PictureActivity" android:exported="false" />
+        <activity android:name=".CalendarActivity" android:exported="false" />
     </application>
 
 </manifest>

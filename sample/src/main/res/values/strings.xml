@@ -1,9 +1,120 @@
 <resources>
     <string name="app_name">AndroidCommon</string>
-    <string name="demo_digest">Digest</string>
-    <string name="demo_verify">Verify</string>
-    <string name="demo_toast">Toast</string>
-    <string name="demo_clipboard">Clipboard</string>
-    <string name="demo_bitmap">Bitmap</string>
-    <string name="demo_app">App info</string>
+
+    <string name="back">返回</string>
+    <string name="theme_to_dark">切换到深色模式</string>
+    <string name="theme_to_light">切换到浅色模式</string>
+    <string name="view_source">查看源码</string>
+
+    <!-- 首页 -->
+    <string name="home_eyebrow">ANDROID · KOTLIN UTILITIES</string>
+    <string name="home_title">常用工具，\n一行调用</string>
+    <string name="home_desc">Kotlin 编写、Java 可直接调用的 Android 工具库：应用与设备信息、图片滤镜、校验与摘要、系统能力、日期与动画，零第三方依赖。</string>
+    <string name="home_preview">设备与应用 · 实时读取</string>
+    <string name="home_preview_refresh">刷新</string>
+    <string name="info_app">应用</string>
+    <string name="info_version">版本</string>
+    <string name="info_package">包名</string>
+    <string name="info_screen">屏幕</string>
+    <string name="info_density">密度</string>
+    <string name="info_network">网络</string>
+    <string name="info_ip">本机 IPv4</string>
+    <string name="info_network_on">已连接</string>
+    <string name="info_network_off">未连接</string>
+    <string name="info_orientation_portrait">竖屏</string>
+    <string name="info_orientation_landscape">横屏</string>
+    <string name="info_none">无</string>
+    <string name="home_examples">示例</string>
+    <string name="home_examples_hint">5 个场景，均可交互</string>
+    <string name="home_install">接入</string>
+    <string name="home_install_hint">JitPack · API 21+</string>
+    <string name="home_copy_dependency">复制依赖</string>
+    <string name="home_copied_dependency">已复制依赖</string>
+    <string name="home_license">Apache-2.0</string>
+    <string name="home_author">© venshine</string>
+
+    <string name="demo_filter">图片滤镜</string>
+    <string name="demo_filter_desc">BitmapFilters：原图与十余种滤镜实时对比</string>
+    <string name="demo_verify">校验与摘要</string>
+    <string name="demo_verify_desc">手机号、身份证\nMD5 / SHA-256</string>
+    <string name="demo_system">系统能力</string>
+    <string name="demo_system_desc">Toast、剪贴板、震动、通知、软键盘、设置页</string>
+    <string name="demo_view">视图与动画</string>
+    <string name="demo_view_desc">抖动、呼吸\n连击、双击缩放</string>
+    <string name="demo_calendar">日期</string>
+    <string name="demo_calendar_desc">CalendarUtils 月历网格</string>
+
+    <!-- 图片滤镜 -->
+    <string name="filter_original">原图</string>
+    <string name="filter_result">滤镜后</string>
+    <string name="filter_none">原图</string>
+    <string name="filter_grey">灰度</string>
+    <string name="filter_nostalgic">怀旧</string>
+    <string name="filter_film">底片</string>
+    <string name="filter_soften">柔化</string>
+    <string name="filter_sharpen">锐化</string>
+    <string name="filter_emboss">浮雕</string>
+    <string name="filter_sunshine">光照</string>
+    <string name="filter_saturation">饱和度</string>
+    <string name="filter_lum">亮度</string>
+    <string name="filter_hue">色相</string>
+    <string name="filter_hint_sunshine">在右侧图片上拖动，移动光源</string>
+    <string name="filter_hint_seek">拖动滑块调整强度（127 为不变）</string>
+    <string name="filter_hint_plain">点选上方的滤镜，左右对比</string>
+    <string name="filter_seek_value">强度 %1$d</string>
+
+    <!-- 校验与摘要 -->
+    <string name="verify_mobile">手机号</string>
+    <string name="verify_id_card">身份证号</string>
+    <string name="verify_text">文本</string>
+    <string name="verify_ok">有效</string>
+    <string name="verify_bad">无效</string>
+    <string name="verify_fill_valid">填入有效示例</string>
+    <string name="verify_fill_invalid">填入无效示例</string>
+    <string name="verify_note">MD5 / SHA-1 只用于校验和、缓存 key 等非安全场景；身份证校验依据 GB 11643-1999。</string>
+
+    <!-- 系统能力 -->
+    <string name="system_toast">Toast</string>
+    <string name="system_clipboard">剪贴板</string>
+    <string name="system_vibrate">震动</string>
+    <string name="system_notification">通知</string>
+    <string name="system_keyboard_show">弹出键盘</string>
+    <string name="system_keyboard_hide">收起键盘</string>
+    <string name="system_settings">系统设置</string>
+    <string name="system_app_detail">应用详情</string>
+    <string name="system_keyboard_hint">点这里输入，再试试弹出 / 收起键盘</string>
+    <string name="system_log_title">调用结果</string>
+    <string name="system_log_empty">点击上方按钮，返回值会记录在这里</string>
+    <string name="system_toast_text">Hello AndroidCommon</string>
+    <string name="system_clipboard_text">AndroidCommon 剪贴板示例</string>
+    <string name="system_notification_title">AndroidCommon</string>
+    <string name="system_notification_content">这是一条由 NotificationUtils 发出的通知</string>
+    <string name="system_note">缺权限、缺应用或系统不支持时，工具方法返回 false 而不是抛异常。</string>
+
+    <!-- 视图与动画 -->
+    <string name="view_shake">抖动</string>
+    <string name="view_breath">呼吸</string>
+    <string name="view_breath_stop">停止呼吸</string>
+    <string name="view_anim_title">AnimatorUtils</string>
+    <string name="view_click_title">ClickUtils.clickMultiple</string>
+    <string name="view_click_target">连点 3 次</string>
+    <string name="view_click_hint">500 毫秒内连续点按 3 次才会触发</string>
+    <string name="view_click_taps">按下 %1$d 次</string>
+    <string name="view_click_fired">已触发 %1$d 次</string>
+    <string name="view_picture_title">PictureView</string>
+    <string name="view_picture_desc">双击放大 / 还原，双指缩放，单指拖动</string>
+    <string name="view_picture_open">全屏查看</string>
+    <string name="picture_hint">双击放大，再双击还原</string>
+    <string name="picture_scale">缩放 %1$.1f×</string>
+
+    <!-- 日期 -->
+    <string name="calendar_title_format">%1$d 年 %2$d 月</string>
+    <string name="calendar_prev">上个月</string>
+    <string name="calendar_next">下个月</string>
+    <string name="calendar_today">回到今天</string>
+    <string name="calendar_detail_format">%1$s · %2$s\n本月共 %3$d 天，1 号是星期%4$s</string>
+    <string name="calendar_relative_today">今天</string>
+    <string name="calendar_relative_yesterday">昨天</string>
+    <string name="calendar_relative_future">%1$d 天后</string>
+    <string name="calendar_relative_past">%1$d 天前</string>
 </resources>

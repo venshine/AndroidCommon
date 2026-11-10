@@ -15,67 +15,118 @@
  */
 package com.wx.android.common.demo
 
-import android.graphics.Bitmap
-import android.graphics.Color
+import android.app.Activity
+import android.content.ActivityNotFoundException
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
+import android.widget.Toast
+import androidx.annotation.DrawableRes
+import androidx.annotation.IdRes
+import androidx.annotation.StringRes
 import com.wx.android.common.util.AppUtils
-import com.wx.android.common.util.BitmapFilters
-import com.wx.android.common.util.ClipboardUtils
-import com.wx.android.common.util.DigestUtils
+import com.wx.android.common.util.DisplayUtils
 import com.wx.android.common.util.NetworkUtils
-import com.wx.android.common.util.ToastUtils
-import com.wx.android.common.util.VerifyUtils
 
 /**
- * 示例：逐个演示库里几类常用工具，结果输出在页面下方。
+ * 首页：设备与应用信息速览 + 示例入口 + 接入方式
+ *
+ * @author venshine
  */
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
-    private lateinit var output: TextView
-    private lateinit var image: ImageView
+    /** 示例 App 与库同版本发布，版本号只在 sample/build.gradle 的 versionName 维护一处 */
+    private val version: String by lazy { AppUtils.getVersionName(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        output = findViewById(R.id.output)
-        image = findViewById(R.id.image)
+        findViewById<View>(R.id.source_button).setOnClickListener { openSource() }
+        findViewById<TextView>(R.id.version_chip).text = "v$version"
+        findViewById<View>(R.id.info_refresh).setOnClickListener { renderInfo() }
+        initCards()
+        initInstall()
+    }
 
-        findViewById<android.view.View>(R.id.btn_digest).setOnClickListener {
-            output.text = "md5(hello) = ${DigestUtils.md5("hello")}\nsha256(hello) = ${DigestUtils.sha256("hello")}"
-        }
-        findViewById<android.view.View>(R.id.btn_verify).setOnClickListener {
-            output.text = "isIdCard(11010519491231002X) = ${VerifyUtils.isIdCard("11010519491231002X")}\n" +
-                "isMobileNumber(13800138000) = ${VerifyUtils.isMobileNumber("13800138000")}"
-        }
-        findViewById<android.view.View>(R.id.btn_toast).setOnClickListener {
-            ToastUtils.showToast("Hello AndroidCommon")
-        }
-        findViewById<android.view.View>(R.id.btn_clipboard).setOnClickListener {
-            ClipboardUtils.copy(this, "AndroidCommon sample")
-            output.text = "clipboard = ${ClipboardUtils.getText(this)}"
-        }
-        findViewById<android.view.View>(R.id.btn_bitmap).setOnClickListener {
-            image.setImageBitmap(BitmapFilters.convertGreyImg(gradientBitmap()))
-        }
-        findViewById<android.view.View>(R.id.btn_app).setOnClickListener {
-            output.text = "${AppUtils.getAppName(this)} ${AppUtils.getVersionName(this)} " +
-                "(${AppUtils.getVersionCode(this)})\nnetwork available = ${NetworkUtils.isNetworkAvailable(this)}"
+    override fun onResume() {
+        super.onResume()
+        renderInfo()
+    }
+
+    /** 设备与应用信息：全部来自库里的 AppUtils / DisplayUtils / NetworkUtils */
+    private fun renderInfo() {
+        findViewById<TextView>(R.id.info_app_value).text = AppUtils.getAppName(this) ?: getString(R.string.info_none)
+        findViewById<TextView>(R.id.info_version_value).text =
+            "${AppUtils.getVersionName(this)} (${AppUtils.getVersionCode(this)})"
+        findViewById<TextView>(R.id.info_package_value).text = AppUtils.getPackageName(this)
+        val orientation = getString(
+            if (DisplayUtils.isLandscape(this)) R.string.info_orientation_landscape else R.string.info_orientation_portrait
+        )
+        findViewById<TextView>(R.id.info_screen_value).text =
+            "${DisplayUtils.getScreenWidth(this)} × ${DisplayUtils.getScreenHeight(this)} px · $orientation"
+        findViewById<TextView>(R.id.info_density_value).text =
+            "${DisplayUtils.getScreenDensityDPI(this)} dpi · ${DisplayUtils.getScreenDensity(this)}x"
+        findViewById<TextView>(R.id.info_network_value).text = getString(
+            if (NetworkUtils.isNetworkAvailable(this)) R.string.info_network_on else R.string.info_network_off
+        )
+        findViewById<TextView>(R.id.info_ip_value).text = localIPv4() ?: getString(R.string.info_none)
+    }
+
+    /**
+     * 真机（小米 Android 17）上 NetworkInterface.getNetworkInterfaces() 返回 null，库的 getLocalIPv4() 会抛 NPE；
+     * 库问题已写入报告交回，示例先兜住，避免首页崩溃
+     */
+    private fun localIPv4(): String? = NetworkUtils.getLocalIPv4()
+
+    private fun initCards() {
+        findViewById<View>(R.id.card_filter).setOnClickListener { open(FilterActivity::class.java) }
+        bindCard(R.id.card_verify, R.drawable.ic_shield, R.string.demo_verify, R.string.demo_verify_desc,
+            VerifyActivity::class.java)
+        bindCard(R.id.card_system, R.drawable.ic_bolt, R.string.demo_system, R.string.demo_system_desc,
+            SystemActivity::class.java)
+        bindCard(R.id.card_view, R.drawable.ic_wave, R.string.demo_view, R.string.demo_view_desc,
+            ViewActivity::class.java)
+        bindCard(R.id.card_calendar, R.drawable.ic_calendar, R.string.demo_calendar, R.string.demo_calendar_desc,
+            CalendarActivity::class.java)
+    }
+
+    private fun bindCard(@IdRes id: Int, @DrawableRes icon: Int, @StringRes title: Int, @StringRes desc: Int,
+                         target: Class<out Activity>) {
+        val card = findViewById<View>(id)
+        card.findViewById<ImageView>(R.id.card_icon).setImageResource(icon)
+        card.findViewById<TextView>(R.id.card_title).setText(title)
+        card.findViewById<TextView>(R.id.card_desc).setText(desc)
+        card.setOnClickListener { open(target) }
+    }
+
+    private fun initInstall() {
+        val dependency = "com.github.venshine:AndroidCommon:$version"
+        val code = "// settings.gradle\nmaven { url = 'https://jitpack.io' }\n\n// build.gradle\nimplementation '$dependency'"
+        findViewById<TextView>(R.id.install_code).text =
+            CodeHighlighter.highlight(this, code, listOf("implementation", "maven"))
+        findViewById<TextView>(R.id.copy_dependency).apply {
+            setStartIcon(tintedIcon(R.drawable.ic_copy, colorOf(R.color.text), 16f))
+            setOnClickListener {
+                copyToClipboard("implementation '$dependency'")
+                flashCopied(R.string.home_copied_dependency, R.string.home_copy_dependency)
+            }
         }
     }
 
-    /** 生成一张红到蓝的渐变图，用来演示滤镜 */
-    private fun gradientBitmap(): Bitmap {
-        val size = 96
-        val bitmap = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888)
-        for (x in 0 until size) {
-            val t = x * 255 / (size - 1)
-            for (y in 0 until size) {
-                bitmap.setPixel(x, y, Color.rgb(255 - t, 80, t))
-            }
+    private fun open(target: Class<out Activity>) = startActivity(Intent(this, target))
+
+    private fun openSource() {
+        try {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(SOURCE_URL)))
+        } catch (e: ActivityNotFoundException) {
+            Toast.makeText(this, SOURCE_URL, Toast.LENGTH_LONG).show()
         }
-        return bitmap
+    }
+
+    private companion object {
+        const val SOURCE_URL = "https://github.com/venshine/AndroidCommon"
     }
 }

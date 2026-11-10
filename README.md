@@ -17,7 +17,19 @@ All sources live in [`common/src/main/kotlin/com/wx/android/common`](common/src/
 | Images and views | `BitmapUtils`, `BitmapFilters`, `AnimatorUtils`, `ClickUtils`, `ViewUtils`, `PictureView`, `CommonEditText`, `Colors` |
 | Data and text | `CalendarUtils`, `DigestUtils`, `FileUtils`, `ResourceUtils`, `ThreadUtils`, `UrlUtils`, `VerifyUtils` |
 
-The [sample app](sample) calls a few of them (digest, verification, toast, clipboard, bitmap filter, app info).
+The [sample app](sample) has a home page (device and app info) and five demo pages: bitmap filters, verification and digests, system features, views and animation, and a calendar.
+
+ScreenShot
+--
+<img src="screenshot/demo.gif" width="300" alt="AndroidCommon demo" />
+
+| Home | Dark mode | Bitmap filters | Verify & digests |
+|:---:|:---:|:---:|:---:|
+| <img src="screenshot/home.png" width="200" alt="Home" /> | <img src="screenshot/home_dark.png" width="200" alt="Dark mode" /> | <img src="screenshot/filter.png" width="200" alt="Bitmap filters" /> | <img src="screenshot/verify.png" width="200" alt="Verify and digests" /> |
+
+| System features | Views & animation | PictureView | Calendar |
+|:---:|:---:|:---:|:---:|
+| <img src="screenshot/system.png" width="200" alt="System features" /> | <img src="screenshot/view.png" width="200" alt="Views and animation" /> | <img src="screenshot/picture.png" width="200" alt="PictureView" /> | <img src="screenshot/calendar.png" width="200" alt="Calendar" /> |
 
 Usage
 --
@@ -210,11 +222,19 @@ Maintenance status
 --
 The project is maintained at a low pace: bug fixes and compatibility updates, no large new features. Issues and pull requests are welcome.
 
-Local checks: `./gradlew :common:testDebugUnitTest :common:assembleRelease :sample:assembleDebug :sample:testDebugUnitTest`. The tests run on Robolectric with a fixed SDK 35 and on the plain JVM. Code branches for other API levels, and everything on real devices, have not been verified.
+Local checks: `./gradlew :common:testDebugUnitTest :common:assembleRelease :sample:assembleDebug :sample:testDebugUnitTest`. The tests run on Robolectric with a fixed SDK 35 and on the plain JVM. The sample app was walked through page by page on one Xiaomi 2509FPN0BC running Android 17; code branches for other API levels, and other real devices, have not been verified.
 
 Author
 --
 * Email: venshine.cn@gmail.com
+
+Credits
+--
+The sample app bundles these fonts, both licensed under the [SIL Open Font License 1.1](https://openfontlicense.org) (license texts in [`sample/licenses/`](sample/licenses)):
+* [Space Grotesk](https://github.com/floriankarsten/space-grotesk): Copyright 2020 The Space Grotesk Project Authors
+* [JetBrains Mono](https://github.com/JetBrains/JetBrainsMono): Copyright 2020 The JetBrains Mono Project Authors
+
+The library itself bundles no fonts.
 
 License
 --

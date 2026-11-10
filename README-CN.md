@@ -17,7 +17,19 @@
 | 图像与视图 | `BitmapUtils`、`BitmapFilters`、`AnimatorUtils`、`ClickUtils`、`ViewUtils`、`PictureView`、`CommonEditText`、`Colors` |
 | 数据与文本 | `CalendarUtils`、`DigestUtils`、`FileUtils`、`ResourceUtils`、`ThreadUtils`、`UrlUtils`、`VerifyUtils` |
 
-[示例 App](sample) 演示了其中几项（摘要、校验、Toast、剪贴板、位图滤镜、应用信息）。
+[示例 App](sample) 有一个首页（设备与应用信息速览）和五个演示页：图片滤镜、校验与摘要、系统能力、视图与动画、日期。
+
+截图
+--
+<img src="screenshot/demo.gif" width="300" alt="AndroidCommon 演示" />
+
+| 首页 | 深色模式 | 图片滤镜 | 校验与摘要 |
+|:---:|:---:|:---:|:---:|
+| <img src="screenshot/home.png" width="200" alt="首页" /> | <img src="screenshot/home_dark.png" width="200" alt="深色模式" /> | <img src="screenshot/filter.png" width="200" alt="图片滤镜" /> | <img src="screenshot/verify.png" width="200" alt="校验与摘要" /> |
+
+| 系统能力 | 视图与动画 | PictureView | 日期 |
+|:---:|:---:|:---:|:---:|
+| <img src="screenshot/system.png" width="200" alt="系统能力" /> | <img src="screenshot/view.png" width="200" alt="视图与动画" /> | <img src="screenshot/picture.png" width="200" alt="PictureView" /> | <img src="screenshot/calendar.png" width="200" alt="日期" /> |
 
 Usage
 --
@@ -210,11 +222,19 @@ boolean ok = VerifyUtils.isIdCard("11010519491231002X");
 --
 本项目低频维护：只做缺陷修复和兼容性更新，不再增加大的新功能。欢迎提 Issue 和 Pull Request。
 
-本地检查命令：`./gradlew :common:testDebugUnitTest :common:assembleRelease :sample:assembleDebug :sample:testDebugUnitTest`。测试在 Robolectric（固定 SDK 35）和纯 JVM 上运行。其他 API 级别专属的代码分支，以及真机上的表现，均未验证。
+本地检查命令：`./gradlew :common:testDebugUnitTest :common:assembleRelease :sample:assembleDebug :sample:testDebugUnitTest`。测试在 Robolectric（固定 SDK 35）和纯 JVM 上运行。示例 App 已在一台小米 2509FPN0BC（Android 17）真机上逐页走过一遍；其他 API 级别专属的代码分支，以及其他真机，均未验证。
 
 Author
 --
 * Email：venshine.cn@gmail.com
+
+Credits
+--
+示例 App 打包了以下字体，均为 [SIL Open Font License 1.1](https://openfontlicense.org) 协议（协议原文见 [`sample/licenses/`](sample/licenses)）：
+* [Space Grotesk](https://github.com/floriankarsten/space-grotesk)：Copyright 2020 The Space Grotesk Project Authors
+* [JetBrains Mono](https://github.com/JetBrains/JetBrainsMono)：Copyright 2020 The JetBrains Mono Project Authors
+
+库本身不包含任何字体。
 
 License
 --

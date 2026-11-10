@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="@dimen/page_padding"
+        android:paddingTop="16dp"
+        android:paddingEnd="@dimen/page_padding"
+        android:paddingBottom="24dp">
+
+        <include layout="@layout/include_toolbar" />
+
+        <LinearLayout
+            style="@style/Card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            android:paddingStart="10dp"
+            android:paddingTop="12dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="12dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/calendar_prev"
+                    style="@style/IconButton"
+                    android:contentDescription="@string/calendar_prev"
+                    android:src="@drawable/ic_back" />
+
+                <TextView
+                    android:id="@+id/calendar_title"
+                    style="@style/Text.Numeric"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="20sp" />
+
+                <ImageButton
+                    android:id="@+id/calendar_next"
+                    style="@style/IconButton"
+                    android:contentDescription="@string/calendar_next"
+                    android:rotation="180"
+                    android:src="@drawable/ic_back" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/calendar_weekdays"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:layout_marginTop="6dp"
+                android:orientation="horizontal" />
+
+            <LinearLayout
+                android:id="@+id/calendar_grid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/calendar_detail"
+            style="@style/Text.Mono.Code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:id="@+id/calendar_today"
+            style="@style/Button.Outline"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="12dp"
+            android:text="@string/calendar_today"
+            android:textSize="15sp" />
+    </LinearLayout>
+</ScrollView>
