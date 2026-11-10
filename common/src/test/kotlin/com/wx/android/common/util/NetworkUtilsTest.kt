@@ -97,6 +97,13 @@ class NetworkUtilsTest {
         assertNull(NetworkUtils.getDNS1(context))
     }
 
+    // 回归：Android 17 真机上 NetworkInterface.getNetworkInterfaces() 返回 null（JDK 文档允许），
+    // 旧实现直接 toList() 抛 NPE，示例首页一启动就崩溃
+    @Test
+    fun noNetworkInterfacesMeansNoAddress() {
+        assertTrue(NetworkUtils.addressesOf(null).isEmpty())
+    }
+
     @Test
     fun localAddressesAreNeverLoopbackOrLinkLocal() {
         // 结果取决于运行测试的机器：有地址就必须是非回环、非链路本地且格式正确，没有就返回 null

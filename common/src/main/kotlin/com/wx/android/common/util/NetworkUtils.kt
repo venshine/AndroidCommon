@@ -24,6 +24,7 @@ import java.net.Inet4Address
 import java.net.Inet6Address
 import java.net.InetAddress
 import java.net.NetworkInterface
+import java.util.Enumeration
 
 /**
  * 网络状态工具，需要 `ACCESS_NETWORK_STATE` 权限（IP 查询不需要）。
@@ -78,11 +79,15 @@ object NetworkUtils {
     fun getDNS2(context: Context): String? = getDNS(context).getOrNull(1)
 
     private fun localAddresses(): List<InetAddress> = try {
-        NetworkInterface.getNetworkInterfaces().toList()
-            .filter { it.isUp }
-            .flatMap { it.inetAddresses.toList() }
-            .filter { !it.isLoopbackAddress && !it.isLinkLocalAddress }
+        addressesOf(NetworkInterface.getNetworkInterfaces())
     } catch (e: java.net.SocketException) {
         emptyList()
     }
+
+    /** [interfaces] 为 null 表示系统没有返回任何网络接口（JDK 文档允许，Android 17 真机上出现过） */
+    internal fun addressesOf(interfaces: Enumeration<NetworkInterface>?): List<InetAddress> =
+        interfaces?.toList().orEmpty()
+            .filter { it.isUp }
+            .flatMap { it.inetAddresses.toList() }
+            .filter { !it.isLoopbackAddress && !it.isLinkLocalAddress }
 }
